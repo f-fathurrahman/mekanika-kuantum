@@ -1,0 +1,447 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{babel}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding iso8859-15
+\fontencoding T1
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Metode Perturbasi Tak Bergantung Waktu
+\end_layout
+
+\begin_layout Standard
+Diadaptasi dari Konisi Bab 9
+\end_layout
+
+\begin_layout Standard
+Hamiltonian: 
+\begin_inset Formula 
+\[
+H(\lambda)=H_{0}+\lambda V
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solusi persamaan Schroedinger untuk 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ diketahui.
+ 
+\begin_inset Formula $V$
+\end_inset
+
+ adalah potensial perturbasi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H(\lambda)\left|\psi(\lambda\right\rangle =E(\lambda)\left|\psi(\lambda)\right\rangle 
+\]
+
+\end_inset
+
+dengan kondisi
+\begin_inset Formula 
+\[
+\lim_{\lambda\rightarrow0}E(\lambda)=E^{(0)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\lim_{\lambda\rightarrow0}\left|\psi(\lambda)\right\rangle =\left|\psi^{(0)}\right\rangle 
+\]
+
+\end_inset
+
+Asumsikan bahwa level energi yang belum terganggu bersifat non-degenerate.
+\end_layout
+
+\begin_layout Standard
+Asumsikan solusi:
+\begin_inset Formula 
+\[
+\left|\psi\right\rangle =\left|\psi^{(0)}\right\rangle +\lambda\left|\psi^{(1)}\right\rangle +\lambda^{2}\left|\psi^{(2)}\right\rangle +\cdots
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E=E^{(0)}+\lambda\epsilon_{1}+\lambda^{2}\epsilon_{2}+\cdots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substitusi:
+\begin_inset Formula 
+\[
+\left(H_{0}+\lambda V\right)\left(\left|\psi^{(0)}\right\rangle +\lambda\left|\psi^{(1)}\right\rangle +\lambda^{2}\left|\psi^{(2)}\right\rangle +\cdots\right)=\left(E^{(0)}+\lambda\epsilon_{1}+\lambda^{2}\epsilon_{2}+\cdots\right)\left(\left|\psi^{(0)}\right\rangle +\lambda\left|\psi^{(1)}\right\rangle +\lambda^{2}\left|\psi^{(2)}\right\rangle +\cdots\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Kumpulkan dalam pangkat dari 
+\begin_inset Formula $\lambda$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(1)}\right\rangle +\left(V-\epsilon_{1}\right)\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(2)}\right\rangle +\left(V-\epsilon_{1}\right)\left|\psi^{(1)}\right\rangle -\epsilon_{2}\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(3)}\right\rangle +\left(V-\epsilon_{1}\right)\left|\psi^{(2)}\right\rangle -\epsilon_{2}\left|\psi^{(1)}\right\rangle -\epsilon_{3}\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(L)}\right\rangle +V\left|\psi^{(L-1)}\right\rangle -\sum_{K=1}^{L}\epsilon_{K}\left|\psi^{(L-K)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solusi orde-1
+\end_layout
+
+\begin_layout Standard
+dapat diperoleh dari persamaan kedua:
+\begin_inset Formula 
+\[
+\left(H_{0}-E^{(0)}\right)\left|\psi^{(1)}\right\rangle +\left(V-\epsilon_{1}\right)\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dengan memproyeksikan persamaan ini pada ket 
+\begin_inset Formula $\left|\psi^{(0)}\right\rangle $
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\left\langle \psi^{(0)}\right|\left(H_{0}-E^{(0)}\right)\left|\psi^{(1)}\right\rangle +\left\langle \psi^{(0)}\right|\left(V-\epsilon_{1}\right)\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ bersifat self-adjoint dan karena 
+\begin_inset Formula $\left|\psi^{(0)}\right\rangle $
+\end_inset
+
+ adalah eigenvektor yang berasosiasi dengan 
+\begin_inset Formula $E^{(0)}$
+\end_inset
+
+ kita dapat menuliskan
+\begin_inset Formula 
+\[
+\left\langle \psi^{(0)}\right|\left(H_{0}-E^{(0)}\right)=0
+\]
+
+\end_inset
+
+sehingga:
+\begin_inset Formula 
+\[
+\left\langle \psi^{(0)}\right|\left(V-\epsilon_{1}\right)\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left\langle \psi^{(0)}\right|V\left|\psi^{(0)}\right\rangle =\epsilon_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\epsilon_{1}=\left\langle \psi^{(0)}\right|V\left|\psi^{(0)}\right\rangle =\left\langle n\right|V\left|n\right\rangle =V_{nn}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dengan asumsi
+\begin_inset Formula 
+\[
+\left|\psi^{(0)}\right\rangle =\left|n\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Misalkan 
+\begin_inset Formula $\left|k\right\rangle $
+\end_inset
+
+ adalah eigenvektor ternormalisasi dari 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ yang membentuk basis ortonormal komplit pada ruang Hilbert.
+ Koreksi dari vektor keadaan 
+\begin_inset Formula $\left|\psi_{n}^{(1)}\right\rangle $
+\end_inset
+
+ dapat dituliskan sebagai:
+\begin_inset Formula 
+\[
+\left|\psi_{n}^{(1)}\right\rangle =\sum_{k}'\left|k\right\rangle \left\langle k\middle|\psi_{n}^{(1)}\right\rangle 
+\]
+
+\end_inset
+
+di mana suku yang terasosiasi pada vektor 
+\begin_inset Formula $\left|\psi^{(0)}\right\rangle $
+\end_inset
+
+ tidak dimasukkan pada tanda sumasi.
+\end_layout
+
+\begin_layout Standard
+Untuk 
+\begin_inset Formula $\left|k\right\rangle \neq\left|\psi^{(0)}\right\rangle =\left|n\right\rangle $
+\end_inset
+
+ ortogonalitas eigenvektor dari 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ memberikan 
+\begin_inset Formula $\left\langle k\middle|\psi^{(0)}\right\rangle =0$
+\end_inset
+
+ sehingga
+\begin_inset Formula 
+\[
+\left\langle k\right|\left(H_{0}-E_{n}^{(0)}\right)\left|\psi_{n}^{(1)}\right\rangle +\left\langle k\right|\left(V-\epsilon_{1}\right)\left|\psi_{n}^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left\langle k\left|H_{0}\right|\psi^{(1)}\right\rangle -\left\langle k\left|E^{(0)}\right|\psi^{(1)}\right\rangle +\left\langle k\left|V\right|\psi^{(0)}\right\rangle -\left\langle k\right|\epsilon_{1}\left|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(E_{k}^{(0)}-E_{n}^{(0)}\right)\left\langle k\middle|\psi^{(1)}\right\rangle +\left\langle k\left|V\right|\psi^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suku 
+\begin_inset Formula $\left\langle k\right|\epsilon_{1}\left|\psi^{(0)}\right\rangle =0$
+\end_inset
+
+ untuk 
+\begin_inset Formula $k\neq n$
+\end_inset
+
+, dan 
+\begin_inset Formula $E_{k}^{(0)}=\left\langle k\left|H_{0}\right|\psi^{(1)}\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sehingga:
+\begin_inset Formula 
+\[
+\left(E_{k}^{(0)}-E_{n}^{(0)}\right)\left\langle k\middle|\psi^{(1)}\right\rangle +\left\langle k\left|V\right|\psi_{n}^{(0)}\right\rangle =0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left\langle k\middle|\psi^{(1)}\right\rangle =\frac{1}{E_{n}^{(0)}-E_{k}^{(0)}}\left\langle k\left|V\right|\psi_{n}^{(0)}\right\rangle 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diperoleh koreksi orde-1 untuk eigenvektor:
+\begin_inset Formula 
+\[
+\left|\psi^{(1)}\right\rangle =\sum_{k}'\left|k\right\rangle \left\langle k\middle|\psi_{n}^{(1)}\right\rangle 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left|\psi^{(1)}\right\rangle =\sum_{k}'\left|k\right\rangle \frac{1}{E_{n}^{(0)}-E_{k}^{(0)}}\left\langle k\left|V\right|\psi_{n}^{(0)}\right\rangle =\sum_{k}'\left|k\right\rangle \frac{V_{kn}}{E_{n}^{(0)}-E_{k}^{(0)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
