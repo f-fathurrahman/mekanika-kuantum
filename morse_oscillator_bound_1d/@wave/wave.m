@@ -48,7 +48,8 @@ classdef wave < generic & handle
         
         % Constructor: Setting default values
         function obj = wave ()
-            
+            %
+            disp('ENTER wave constructor ');
             % Inherit from constructor of generic superclass
             obj = obj@generic;
             
@@ -57,7 +58,8 @@ classdef wave < generic & handle
             
             % Cell array with bound states; only for 'cheby_imag' 
             obj.bound = {};
-        
+            disp('EXIT wave constructor');
+            %
         end
        
         

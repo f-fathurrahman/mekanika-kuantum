@@ -16,6 +16,8 @@
 function init_obj (obj)
 global hamilt space time
 
+disp('PASS HERE 19 in init_obj')
+
 % Create cell vectors (column vectors)
 obj.dvr = cell (hamilt.coupling.n_eqs,1);
 obj.dia = cell (hamilt.coupling.n_eqs,1);

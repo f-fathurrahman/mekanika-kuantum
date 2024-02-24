@@ -57,13 +57,17 @@ end
 % Choice of WavePacket main classes 
 if nargin==0
     string1 = 'wave';                    % Default: wavefunctions
+    fprintf('Using string1: wave\n');
 end
 
+disp('PASS HERE 63 in qm_setup')
+% Determine state variable according to string1
 switch lower(string1)
-    case 'wave'     % quantum wavefunctions, represented on grids    
+    case 'wave' % quantum wavefunctions, represented on grids    
         state = wave;
+        % This is a function call
         
-    case 'traj'     % phase-space densities, sampled by classical trajectories
+    case 'traj' % phase-space densities, sampled by classical trajectories
         if nargin==1
             param1=[];                   % number of trajectories
             param2=[];                   % seeding random number generator
