@@ -17,6 +17,8 @@
 
 function setup (obj)
 
+disp('ENTER ham.eigen.setup')
+
 global hamilt space
 
 prt.disp (' ')
@@ -110,3 +112,4 @@ prt.disp(['Density of matrix : ' num2str(density) ' %'])
 prt.disp (['Finished after [CPU seconds] : ' num2str(cputime-tim)])
 prt.disp (' ')
 
+disp('EXIT ham.eigen.setup')

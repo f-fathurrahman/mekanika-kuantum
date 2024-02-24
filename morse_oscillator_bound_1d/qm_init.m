@@ -33,7 +33,7 @@ hamilt.pot{1,1}.alf  = 1.189;            % Range parameter
 
 % Select eigen/values/functions
 hamilt.eigen.start     = 00;             % Lower index
-hamilt.eigen.stop      = 21;             % Upper index
+hamilt.eigen.stop      = 2; %21;             % Upper index
 
 % Plot time evolution of the density
 plots.density         = vis.contour;     % Contour plot of Wigner function

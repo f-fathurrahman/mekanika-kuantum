@@ -58,6 +58,8 @@ classdef eigen < handle
         end
         
         function init (obj)
+
+            disp('ENTER ham.eigen.init')
             global hamilt space time
             
             % Artificial mapping of eigenstates onto time step 
@@ -71,7 +73,7 @@ classdef eigen < handle
 
             % Matrix size
             obj.mat_size = space.n_tot * hamilt.coupling.n_eqs;
-
+            disp('EXIT ham.eigen.init')
         end
             
         % Display objects of this class

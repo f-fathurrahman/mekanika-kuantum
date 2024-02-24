@@ -9,6 +9,7 @@
 
 function dvrkin = kinetic2dvr(obj,cutoff,storage)
 
+disp('ENTER dof.fft.kinetic2dvr')
 global space
 
 % If kinetic operator is disabled
@@ -79,3 +80,5 @@ for ii = 1:space.n_tot
     allowedindex = find(allowed);
     dvrkin(ii, allowedindex) = kinetic( indices{obj.dof}(ii), indices{obj.dof}(allowedindex) );
 end
+
+disp('EXIT dof.fft.kinetic2dvr')

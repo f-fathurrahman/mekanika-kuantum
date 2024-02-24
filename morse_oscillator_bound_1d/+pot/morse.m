@@ -25,9 +25,11 @@ classdef morse < pot.generic & handle
         
        % Constructor: Set default values
         function obj = morse
+            disp('ENTER morse constructor')
             obj.empty = false;
             obj.r_e = 0;
             obj.t_e = 0;
+            disp('EXIT morse constructor')
         end
         
         

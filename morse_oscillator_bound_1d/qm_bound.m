@@ -34,38 +34,44 @@ dof.init (state);
 init_ham (state);
 
 % Solve eigenproblem for Hamiltonian matrix
-init  ( hamilt.eigen );
-disp  ( hamilt.eigen );
-setup ( hamilt.eigen );
-symm  ( hamilt.eigen );
-diag  ( hamilt.eigen );
+
+% initialize the eigen object
+init( hamilt.eigen );
+disp( hamilt.eigen );
+
+% Calculate Hamiltonian matrix elements here
+setup( hamilt.eigen );
+% symmetrization, this is optional, only implemented for
+symm( hamilt.eigen );
+
+diag( hamilt.eigen );
 
 % Initialize expectation values and uncertainties of observables
 obs.init;
 
 %% Beginning of main loop over bound states
-for step = 1 : hamilt.eigen.number
-    
-    % Extract psi from columns(!) of eigenvector matrix and normalize
-    eigen ( state, step );
-    
-    % Transform to adiabatic representation (if desired)
-    adiabatic ( state, step, 'dia2adi' ); % needs more testing ?!?
-    
-    % Expectation values and uncertainties of observables
-    observe ( state, step );
-    
-    % Logging and plot title
-    obs.log ( step );       
-             
-    % Show visualization of densities and expectation values
-    vis.show ( state, step );
-
-    % save the wave function
-    save ( state,  step );
-    
-% End of main loop     
-end
+%for step = 1 : hamilt.eigen.number
+%    
+%    % Extract psi from columns(!) of eigenvector matrix and normalize
+%    eigen ( state, step );
+%    
+%    % Transform to adiabatic representation (if desired)
+%    adiabatic ( state, step, 'dia2adi' ); % needs more testing ?!?
+%    
+%    % Expectation values and uncertainties of observables
+%    observe ( state, step );
+%    
+%    % Logging and plot title
+%    obs.log ( step );       
+%             
+%    % Show visualization of densities and expectation values
+%    vis.show ( state, step );
+%
+%    % save the wave function
+%    save ( state,  step );
+%    
+%% End of main loop     
+%end
 
 % Output clock/date/time
 prt.clock;
