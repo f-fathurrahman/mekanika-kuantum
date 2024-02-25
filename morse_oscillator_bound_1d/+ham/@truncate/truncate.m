@@ -49,7 +49,9 @@ classdef truncate < handle
         end
         
         % Truncating potential and kinetic energy
-        function trunc_pot_kin (obj)
+        function trunc_pot_kin(obj)
+            prt.disp('*** ENTER trunc_pot_kin')
+
             global hamilt space
             
             % Manually truncate potential energy
@@ -112,7 +114,7 @@ classdef truncate < handle
             prt.disp ( [ 'Spectral range of Hamiltonian : ' num2str(hamilt.range.delta) ] )
             prt.disp ( ' ' )
             
-            
+            prt.disp('*** EXIT trunc_pot_kin') 
         end
         
         

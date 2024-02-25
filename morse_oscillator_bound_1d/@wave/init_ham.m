@@ -14,20 +14,24 @@
 %
 % see the README file for license details.
 
-function init_ham (state)
+function init_ham(state)
+
+prt.disp('')
+prt.disp('********* ENTER wave.init_ham')
+
 global hamilt space time
 
 %% Close coupling scheme
-init (hamilt.coupling, state);
-disp (hamilt.coupling);
+init(hamilt.coupling, state);
+disp(hamilt.coupling);
 
 
 %% Optionally truncate all energies below/above thresholds    
 if ~isfield (hamilt,'truncate') % If not already existing
     hamilt.truncate = ham.truncate; % Construct object
 end
-init (hamilt.truncate);
-disp (hamilt.truncate);
+init(hamilt.truncate);
+disp(hamilt.truncate);
 
 %% Grid representation of kinetic energy (diabatic: scalar)
 
@@ -177,3 +181,5 @@ end
 
 %% Truncating potential and kinetic energy
 trunc_pot_kin (hamilt.truncate)
+
+prt.disp('********* EXIT wave.init_ham')

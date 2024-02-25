@@ -8,9 +8,9 @@
 function qm_init
 global hamilt plots space state
 
-prt.disp ( '*****************************' )
-prt.disp ( 'Morse oscillator (OH radical)' )
-prt.disp ( '*****************************' )
+prt.disp( '*****************************' )
+prt.disp( 'Morse oscillator (OH radical)' )
+prt.disp( '*****************************' )
 
 state.save_export = true;
 

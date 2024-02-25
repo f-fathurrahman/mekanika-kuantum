@@ -1,20 +1,24 @@
 clear all; close all;
 
 % Global variables are declared here
-global hamilt space state;
+global hamilt space state info;
 
-disp('***********************************')
-disp('DEBUG Morse oscillator (OH radical)')
-disp('***********************************')
+% Initializes general information and sets up log files.
+info.system = 'Matlab';
+prt.init(mfilename('fullpath'));
+
+prt.disp('***********************************')
+prt.disp('DEBUG Morse oscillator (OH radical)')
+prt.disp('***********************************')
 
 % Initialize state (using wavefunction)
 state = wave(); % will call a constructor
 state.save_export = false;
 
 % Setup Hamiltonian
-hamilt.coupling = ham.coupling;
-hamilt.eigen    = ham.eigen;
-hamilt.truncate = ham.truncate;
+hamilt.coupling = ham.coupling();
+hamilt.eigen    = ham.eigen();
+hamilt.truncate = ham.truncate();
 
 % Spatial discretization
 space.dof{1} = dof.fft;  % using fft grid
@@ -37,3 +41,22 @@ hamilt.pot{1,1}.alf  = 1.189; % Range parameter
 % Select eigen/values/functions
 hamilt.eigen.start = 0;
 hamilt.eigen.stop  = 2;
+
+% Initialize spatial discretization for each degree of freedom
+dof.init(state);
+
+% Initialize Hamiltonian operator
+init_ham(state); % in case of state=wave it will call wave.init_ham
+
+% initialize the eigen object
+init(hamilt.eigen);
+disp(hamilt.eigen);
+
+% Calculate Hamiltonian matrix elements here
+setup(hamilt.eigen);
+% After this call, hamilt.eigen.matrix is available
+
+% symmetrization, this is optional, only implemented for 1d
+symm(hamilt.eigen);
+
+diag(hamilt.eigen);

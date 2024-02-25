@@ -8,6 +8,9 @@
 
 function init_grid(obj)
 
+prt.disp('')
+prt.disp('*** ENTER dof.fft.init_grid')
+
 % this is the (constant!) weight in coordinate space 
 obj.x_dlt = (obj.x_max - obj.x_min) / obj.n_pts;
 obj.weight = ones(obj.n_pts, 1) * obj.x_dlt;
@@ -23,3 +26,5 @@ obj.p_dlt = 2*obj.p_max / obj.n_pts;
 
 % the grid points in momentum space as a column (!) vector
 obj.p_grid = linspace(obj.p_min, obj.p_max - 2*obj.p_max/obj.n_pts, obj.n_pts)';
+
+prt.disp('*** EXIT dof.fft.init_grid')

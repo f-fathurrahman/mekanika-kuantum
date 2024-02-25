@@ -48,18 +48,19 @@ classdef eigen < handle
         
         % Constructor: Set default values
         function obj = eigen
-
+            prt.disp('ENTER hamilt.eigen constructor')
             obj.start   = 00;            % start at ground state
             obj.stop    = 10;            % stop at 10th excited state
             obj.cutoff  = eps;           % cutoff at machine epsilon
             obj.storage = 'f';           % using full matrices
             obj.choice  = 'sr';          % eigenvalues with smallest real
             obj.sigma   = 0;             % eigenvalues near this number
+            prt.disp('EXIT hamilt.eigen constructor')
         end
         
         function init (obj)
 
-            disp('ENTER ham.eigen.init')
+            prt.disp('ENTER hamilt.eigen.init')
             global hamilt space time
             
             % Artificial mapping of eigenstates onto time step 
@@ -73,7 +74,7 @@ classdef eigen < handle
 
             % Matrix size
             obj.mat_size = space.n_tot * hamilt.coupling.n_eqs;
-            disp('EXIT ham.eigen.init')
+            prt.disp('EXIT hamilt.eigen.init')
         end
             
         % Display objects of this class

@@ -20,6 +20,10 @@
 % see the README file for license details.
 
 function init (state)
+
+prt.disp('')
+prt.disp('*** ENTER dof.init')
+
 global space 
 
 % Dimensionality of problem
@@ -111,3 +115,4 @@ if space.n_dim > 1
     end
 end
 
+prt.disp('*** EXIT dof.init')

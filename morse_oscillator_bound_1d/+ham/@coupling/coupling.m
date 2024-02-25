@@ -30,13 +30,13 @@ classdef coupling < handle
         
         % Constructor: Set default values
         function obj = coupling
-            disp('ENTER hamilt.coupling')
+            disp('ENTER hamilt.coupling constructor')
             obj.n_eqs = 1;
             obj.labels = [];
             obj.represent = [];
             obj.ini_norm = true;
             obj.ini_rep = 'dia';
-            disp('EXIT hamilt.coupling')
+            disp('EXIT hamilt.coupling constructor')
         end
         
         % Initialization

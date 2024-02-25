@@ -17,7 +17,7 @@
 
 function setup (obj)
 
-disp('ENTER ham.eigen.setup')
+prt.disp('ENTER ham.eigen.setup')
 
 global hamilt space
 
@@ -109,7 +109,7 @@ obj.matrix(abs(obj.matrix) < obj.cutoff) = 0;
 density = 100*nnz(obj.matrix) / obj.mat_size^2;
 
 prt.disp(['Density of matrix : ' num2str(density) ' %'])
-prt.disp (['Finished after [CPU seconds] : ' num2str(cputime-tim)])
-prt.disp (' ')
+prt.disp(['Finished after [CPU seconds] : ' num2str(cputime-tim)])
+prt.disp(' ')
 
-disp('EXIT ham.eigen.setup')
+prt.disp('EXIT ham.eigen.setup')
