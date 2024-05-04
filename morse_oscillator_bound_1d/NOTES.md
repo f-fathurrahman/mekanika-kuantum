@@ -1,11 +1,18 @@
+## TODO
+
+How to initialize Hamiltonian matrix?
+
+How to initialize the potential?
+
+
 ## Normal run
 
+This is the usual sequence call:
+```matlab
 qm_setup()
-
 qm_init() % initialize system
 qm_bound()
-
-
+```
 
 ## Get global variables
 
@@ -13,17 +20,15 @@ qm_bound()
 global global_var_name;
 ```
 
-## Get field names of a struct variable
+## Working with data types
 
-Using function `fieldnames`:
+Get field names of a struct variable, using function `fieldnames`:
 
 ```matlab
 fieldnames(atomic)
 ```
 
-## How to get type of a variable
-
-Using function `class`:
+How to get type of a variable, using function `class`:
 
 ```
 >> class(atomic.m)
@@ -31,4 +36,14 @@ Using function `class`:
 ans =
 
     'struct'
+```
+
+Examples:
+```
+>> class(hamilt)
+ans = struct
+>> class(hamilt.pot)
+ans = cell
+>> class(hamilt.pot{1})
+ans = pot.morse
 ```

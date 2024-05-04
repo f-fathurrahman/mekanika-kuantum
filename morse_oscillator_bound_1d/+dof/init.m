@@ -19,6 +19,7 @@
 %
 % see the README file for license details.
 
+% ffr: This will also access global variable space
 function init (state)
 
 prt.disp('')
@@ -42,13 +43,13 @@ if isa(state,'wave') || ( isa(state,'traj') && space.n_dim<3 )
     end
     
     % Some logging header
-    prt.disp ( '***************************************************************' )
-    prt.disp ( 'Setting up a direct product of the one-dimensional grids       ' )
-    prt.disp ( '***************************************************************' )
-    prt.disp ( ' ' )
-    prt.disp ( [ 'Dimensionality of problem          : ' int2str(space.n_dim) ] )
-    prt.disp ( [ 'Total number of grid points        : ' int2str(space.n_tot) ] )
-    prt.disp ( ' ' )
+    prt.disp('***************************************************************')
+    prt.disp('Setting up a direct product of the one-dimensional grids       ')
+    prt.disp('***************************************************************')
+    prt.disp(' ' )
+    prt.disp([ 'Dimensionality of problem          : ' int2str(space.n_dim) ] )
+    prt.disp([ 'Total number of grid points        : ' int2str(space.n_tot) ] )
+    prt.disp(' ' )
     
     % Build one-dimensional grids in DVR and FBR space as cell arrays
     weight = cell(space.n_dim,1);

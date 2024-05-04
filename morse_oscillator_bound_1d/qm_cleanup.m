@@ -36,4 +36,4 @@ info.stdout = [];
 
 % Remove path
 rmpath(info.path_name);
-% This will error in Octave
+% This will give warning in Octave
