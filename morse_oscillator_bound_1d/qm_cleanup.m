@@ -31,8 +31,9 @@ if strcmpi(info.program,'qm_propa') && isa (time.propa,'tmp.wave.cheby_imag')
     end
 end
 % Close log file
-fclose (info.stdout);
+fclose(info.stdout);
 info.stdout = [];
 
 % Remove path
 rmpath(info.path_name);
+% This will error in Octave

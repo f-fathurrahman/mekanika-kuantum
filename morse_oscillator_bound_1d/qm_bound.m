@@ -20,18 +20,18 @@ function qm_bound ()
 global hamilt state
 
 % Initializes general information and sets up log files.
-prt.init (mfilename('fullpath'));
+prt.init(mfilename('fullpath'));
 
 % Bound state calculations for wavefunctions only
-if ~isa(state,'wave') 
-    prt.error ('Bound state calculations for wavefunctions only')
+if ~isa(state, 'wave') 
+    prt.error('Bound state calculations for wavefunctions only')
 end
 
 % Initialize spatial discretization for each degree of freedom
-dof.init (state);
+dof.init(state);
 
 % Initialize Hamiltonian operator
-init_ham (state);
+init_ham(state);
 
 % Solve eigenproblem for Hamiltonian matrix
 
@@ -50,28 +50,28 @@ diag( hamilt.eigen );
 obs.init;
 
 %% Beginning of main loop over bound states
-%for step = 1 : hamilt.eigen.number
-%    
-%    % Extract psi from columns(!) of eigenvector matrix and normalize
-%    eigen ( state, step );
-%    
-%    % Transform to adiabatic representation (if desired)
-%    adiabatic ( state, step, 'dia2adi' ); % needs more testing ?!?
-%    
-%    % Expectation values and uncertainties of observables
-%    observe ( state, step );
-%    
-%    % Logging and plot title
-%    obs.log ( step );       
-%             
-%    % Show visualization of densities and expectation values
-%    vis.show ( state, step );
-%
-%    % save the wave function
-%    save ( state,  step );
-%    
-%% End of main loop     
-%end
+for step = 1 : hamilt.eigen.number
+    
+    % Extract psi from columns(!) of eigenvector matrix and normalize
+    eigen( state, step );
+    
+    % Transform to adiabatic representation (if desired)
+    adiabatic ( state, step, 'dia2adi' ); % needs more testing ?!?
+    
+    % Expectation values and uncertainties of observables
+    observe ( state, step );
+    
+    % Logging and plot title
+    obs.log ( step );       
+             
+    % Show visualization of densities and expectation values
+    vis.show ( state, step );
+
+    % save the wave function
+    save( state,  step );
+    
+% End of main loop     
+end
 
 % Output clock/date/time
 prt.clock;

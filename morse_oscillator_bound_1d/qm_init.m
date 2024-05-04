@@ -32,8 +32,8 @@ hamilt.pot{1,1}.r_e  = 1.821;            % Equilibrium length
 hamilt.pot{1,1}.alf  = 1.189;            % Range parameter
 
 % Select eigen/values/functions
-hamilt.eigen.start     = 00;             % Lower index
-hamilt.eigen.stop      = 2; %21;             % Upper index
+hamilt.eigen.start     = 0;             % Lower index
+hamilt.eigen.stop      = 3; %21;             % Upper index
 
 % Plot time evolution of the density
 plots.density         = vis.contour;     % Contour plot of Wigner function
