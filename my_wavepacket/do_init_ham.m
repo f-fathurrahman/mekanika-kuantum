@@ -1,11 +1,7 @@
-%--------------------------------------------------------------------------
-%
 % Initialize (quantum) Hamiltonian operator for
 % use with wave functions represented on grids
-%
-%--------------------------------------------------------------------------
 
-function [hamilt, space, time_var] = init_ham(state, hamilt, space, time_var)
+% function [hamilt, space, time_var] = init_ham(state, hamilt, space, time_var)
 
 %% Close coupling scheme
 init(hamilt.coupling, state);
@@ -13,7 +9,7 @@ disp(hamilt.coupling);
 
 %% Optionally truncate all energies below/above thresholds    
 if ~isfield(hamilt, 'TruncateClass') % If not already existing
-    hamilt.truncate = ham.truncate; % Construct object
+    hamilt.truncate = TruncateClass(); % Construct object
 end
 init(hamilt.truncate);
 disp(hamilt.truncate);
@@ -21,18 +17,19 @@ disp(hamilt.truncate);
 %% Grid representation of kinetic energy (diabatic: scalar)
 
 % Required for some reason inside grid_.../init_kin
-%time_var.steps.s_delta = 1e-10; % set to dummy value
+time_var.steps.s_delta = 1e-10; % set to dummy value
 % ffr: disabled
 
 % Kinetic operators associated with each type of DVR
 for k = 1:space.n_dim
-    init_kin (space.dof{k}, 1);
+    %init_kin(space.dof{k}, space, time_var, hamilt, 1);
+    space.dof{k}.init_kin(space, time_var, hamilt, 1)
 end
 
 % "Extra" kinetic operators
 if isfield(hamilt, 'kin')
     for k = 1:length(hamilt.kin)
-        init_kin (hamilt.kin{k}, 1);
+        init_kin(hamilt.kin{k}, 1);
     end
 end
 
@@ -166,4 +163,4 @@ else
 end
 
 %% Truncating potential and kinetic energy
-trunc_pot_kin (hamilt.truncate)
+hamilt = trunc_pot_kin(hamilt.truncate, hamilt, space)

@@ -12,8 +12,7 @@
 %
 % see the README file for license details.
 
-function init (filename)
-global info
+function info = init(filename, info)
 
 % Path and file name
 [pathstr, filestr, ~] = fileparts (filename);
