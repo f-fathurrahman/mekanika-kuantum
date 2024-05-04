@@ -1,10 +1,20 @@
 clear all; close all;
 
 % Global variables are declared here
+% They will be accessed later in the individual related functions.
 global hamilt space state info;
 
 % Initializes general information and sets up log files.
-info.system = 'Matlab';
+% Running under Matlab or Octave
+if exist ('OCTAVE_VERSION', 'builtin')
+    info.system = 'Octave';
+    warning("off", "Octave:shadowed-function");
+    pkg load statistics
+    pkg load control
+else
+    info.system = 'Matlab';
+end
+
 prt.init(mfilename('fullpath'));
 
 prt.disp('***********************************')
@@ -24,7 +34,7 @@ hamilt.truncate = ham.truncate();
 space.dof{1} = dof.fft;  % using fft grid
 space.dof{1}.mass = 1728.539; % Reduced mass
 space.dof{1}.n_pts = 128;  % Number of grid points
-space.dof{1}.x_min = 1.0; % Lower bound of grid 
+space.dof{1}.x_min = 1.0; % Lower bound of grid
 space.dof{1}.x_max = 10.0; % Upper bound of grid
 space.dof{1}.periodic = false; % without PBC
 
@@ -43,7 +53,10 @@ hamilt.eigen.start = 0;
 hamilt.eigen.stop  = 2;
 
 % Initialize spatial discretization for each degree of freedom
+prt.disp('Calling dof.init(state)')
 dof.init(state);
+prt.disp('End of dof.init(state)')
+% NOTE: dof here is a class name, not an object or a variable.
 
 % Initialize Hamiltonian operator
 init_ham(state); % in case of state=wave it will call wave.init_ham

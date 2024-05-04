@@ -1,3 +1,12 @@
+## Normal run
+
+qm_setup()
+
+qm_init() % initialize system
+qm_bound()
+
+
+
 ## Get global variables
 
 ```matlab
