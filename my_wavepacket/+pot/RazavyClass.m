@@ -2,14 +2,7 @@
 % Potential energy for a Razayv single/double well
 %--------------------------------------------------------------------------
 
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2015 Burkhard Schmidt
-%
-% see the README file for license details.
-
-classdef razavy < pot.generic & handle
+classdef RazavyClass < pot.generic & handle
 
     properties (Access = public)
         
@@ -32,17 +25,19 @@ classdef razavy < pot.generic & handle
         end
         
         % Initialize potential: Set/check parameters
-        function init (~)
-            global space
+        function init(obj, space)
+            %global space
             if space.n_dim ~= 1
                 prt.error ('This potential only for one dimension')
             end
          end
-        
+
+        function disp(obj)
+            prt.disp('Razavy potential')
+        end
 
         % Display potential, overloading default disp method
-        function disp(obj)
-            disp@pot.generic (obj)
+        function disp_info(obj)
             prt.disp ('Quasi-exactly solvable Razavy single/double well  ')
             prt.disp ('***************************************************************')
             prt.disp ('                                                  ')

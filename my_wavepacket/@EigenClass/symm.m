@@ -1,25 +1,10 @@
-%-------------------------------------------------------------------------
-%
 % Solve the time-independent Schroedinger equation to get eigenstates
 % and energies in pseudospectral representation using DVR/FBR techniques 
 %
 % Part 2/3: Optionally enforce symmetry restrictions. 
 %           So far, this is restricted to a 1-D grid.
-%
-%--------------------------------------------------------------------------
 
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2004-2023 Burkhard Schmidt's group
-%               2007-2011 Ulf Lorenz
-%               2011 Ulf Lorenz
-%
-% see the README file for license details.
-
-function symm (obj)
-
-global hamilt space
+function symm(obj, hamilt, space)
 
 % Symmetry adaption is optional
 if isempty(obj.symmetry) || strcmpi(obj.symmetry,'n')

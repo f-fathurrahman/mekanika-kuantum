@@ -31,31 +31,28 @@ state.save_export = false;
 hamilt.coupling = CouplingClass();
 hamilt.eigen    = EigenClass();
 hamilt.truncate = TruncateClass();
-% In Matlab, there is no need to initialize hamilt structure
+
+hamilt.truncate.e_min  = -15.0;          % Lower truncation of energy
+hamilt.truncate.e_max  = 1000.0;         % Upper truncation of energy
 
 
 space.n_dim = 1;
 % Initialize space.dof{1} as fft object
 space.dof{1} = FFTClass();  % using fft grid
-space.dof{1}.mass = 1728.539; % Reduced mass
-space.dof{1}.n_pts = 128;  % Number of grid points
-space.dof{1}.x_min = 1.0; % Lower bound of grid
-space.dof{1}.x_max = 10.0; % Upper bound of grid
-space.dof{1}.periodic = false; % without PBC
+space.dof{1}.mass  = 1/2;                % Particle mass
+space.dof{1}.n_pts = 128;                % Number of grid points
+space.dof{1}.x_min = -7.0;               % Lower bound of grid
+space.dof{1}.x_max =  7.0;               % Upper bound of grid
 
-% Hamiltonian operator option (what these parameters affects?)
-hamilt.truncate.e_min  =  0.0; % Lower truncation of energy
-hamilt.truncate.e_max  =  1.0; % Upper truncation of energy
-
-% Initialize potential
-hamilt.pot{1} = pot.MorseClass();
-hamilt.pot{1}.d_e  = 0.1994; % Dissociation energy
-hamilt.pot{1}.r_e  = 1.821; % Equilibrium length
-hamilt.pot{1}.alf  = 1.189; % Range parameter
+% Razavy Potential: beta=0.1, kappa=-7
+hamilt.pot{1,1}          = pot.RazavyClass();  % Hyperbolic potential
+hamilt.pot{1,1}.modified = true;         % Use modified version
+hamilt.pot{1,1}.eta      = -0.7;         % prefactor of cosh
+hamilt.pot{1,1}.zeta     = 0.01;         % prefactor of cosh^2
 
 % Select eigen/values/functions
 hamilt.eigen.start = 0;
-hamilt.eigen.stop  = 2;
+hamilt.eigen.stop  = 3;
 
 % Initialize spatial discretization for each degree of freedom
 space = myfuncs.dof_init(state, space);
