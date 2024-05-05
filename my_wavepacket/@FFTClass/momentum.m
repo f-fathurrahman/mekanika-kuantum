@@ -1,14 +1,5 @@
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2004-2017 Burkhard Schmidt's group
-%               2007-2009 Ulf Lorenz
-%
-% see the README file for license details.
-
-function retval = momentum(obj, psi)
-
-global space
+function retval = momentum(obj, psi, space)
+% global space
 
 if isempty(obj.kin)
     init_kin(obj, 1);

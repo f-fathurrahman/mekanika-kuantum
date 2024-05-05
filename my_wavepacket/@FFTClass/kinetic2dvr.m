@@ -1,18 +1,6 @@
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2004-2017 Burkhard Schmidt's group
-%               2007-2009 Ulf Lorenz
-%               2011 Ulf Lorenz
-%
-% see the README file for license details.
+function dvrkin = kinetic2dvr(obj, space, cutoff, storage)
 
-function dvrkin = kinetic2dvr(obj,cutoff,storage)
-
-prt.disp('')
-prt.disp('<<<<< ENTER dof.fft.kinetic2dvr')
-
-global space
+% global space
 
 % If kinetic operator is disabled
 if obj.nokin

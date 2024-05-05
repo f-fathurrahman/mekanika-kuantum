@@ -63,16 +63,16 @@ space = myfuncs.dof_init(state, space);
 
 % Initialize Hamiltonian operator
 %init_ham(state); % in case of state=wave it will call wave.init_ham
+do_init_ham; % a script
 
 % initialize the eigen object
-% will call ham.eigen.init, also can be used: hamilt.eigen.init()
-%init(hamilt.eigen);
-%disp(hamilt.eigen);
 % at this point hamiltonian matrix is not yet calculated,
 % but its size and several fields are already defined
+time_var = hamilt.eigen.init(hamilt, space, time_var)
+
 
 % Calculate Hamiltonian matrix elements here
-%setup(hamilt.eigen);
+hamilt.eigen.setup(hamilt, space);
 % After this call, hamilt.eigen.matrix is available
 
 % symmetrization, this is optional, only implemented for 1d

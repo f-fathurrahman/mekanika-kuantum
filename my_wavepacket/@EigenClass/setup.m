@@ -3,11 +3,9 @@
 %
 % Part 1/3: Set up the Hamiltonian matrix in DVR space
 
-function setup(obj)
+function setup(obj, hamilt, space)
 
-prt.disp('ENTER ham.eigen.setup')
-
-global hamilt space
+% global hamilt space
 
 prt.disp (' ')
 prt.disp('Start setting up matrix ...')
@@ -33,7 +31,7 @@ end
 for k = 1:space.n_dim
     prt.disp(['... kinetic energy for dof : ' num2str(k)])
     obj.matrix(1:N, 1:N) = ...
-        obj.matrix(1:N,1:N) + kinetic2dvr(space.dof{k}, ...
+        obj.matrix(1:N,1:N) + kinetic2dvr(space.dof{k}, space, ...
         obj.cutoff, obj.storage);
 end
 

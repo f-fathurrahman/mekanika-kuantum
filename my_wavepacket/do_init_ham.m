@@ -44,9 +44,8 @@ for m = 1:hamilt.coupling.n_eqs
         end
         hamilt.pot{m,n}.row = m; % Tell each POT its channels
         hamilt.pot{m,n}.col = n; % Tell each POT its channels
-        init( hamilt.pot{m,n} );
-        disp( hamilt.pot{m,n} ); 
-        grid( hamilt.pot{m,n} );
+        init( hamilt.pot{m,n}, space );
+        grid( hamilt.pot{m,n}, space );
     end
 end
 

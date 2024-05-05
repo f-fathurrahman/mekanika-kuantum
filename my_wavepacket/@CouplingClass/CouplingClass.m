@@ -1,16 +1,5 @@
-%--------------------------------------------------------------------------
-%
 % Close coupling scheme and diabatic/adiabatic 
 % representation of the Hamiltonian operator
-%
-%--------------------------------------------------------------------------
-
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2017-.... Burkhard Schmidt's group
-%
-% see the README file for license details.
 
 classdef CouplingClass < handle
     
@@ -29,14 +18,12 @@ classdef CouplingClass < handle
     methods (Access=public)
         
         % Constructor: Set default values
-        function obj = coupling
-            disp('ENTER hamilt.coupling constructor')
+        function obj = CouplingClass()
             obj.n_eqs = 1;
             obj.labels = [];
             obj.represent = [];
             obj.ini_norm = true;
             obj.ini_rep = 'dia';
-            disp('EXIT hamilt.coupling constructor')
         end
         
         % Initialization
@@ -51,13 +38,13 @@ classdef CouplingClass < handle
             
             % Default: diabatic representation
             if isempty (obj.represent)
-                obj.represent='dia';
+                obj.represent = 'dia';
             end
             
             % For single channel wavefunctions: always adiabatic
             % i.e. dressed states including interaction with E-fields
-            if isa(state,'wave') && obj.n_eqs == 1
-                obj.represent='adi';
+            if isa(state, 'WaveClass') && obj.n_eqs == 1
+                obj.represent = 'adi';
             end
             
             % Normalize vector of coefficients
@@ -68,16 +55,16 @@ classdef CouplingClass < handle
         end
         
         % Display properties of object
-        function disp (obj)
+        function disp(obj)
             
             if obj.n_eqs == 1
                 return
             end
             
-            prt.disp ('***************************************************************')
-            prt.disp ('Initialize close coupling scheme    ')
-            prt.disp ('***************************************************************')
-            prt.disp (' ')
+            prt.disp('***************************************************************')
+            prt.disp('Initialize close coupling scheme    ')
+            prt.disp('***************************************************************')
+            prt.disp(' ')
             switch lower (obj.represent)
                 case 'dia'
                     prt.disp ( 'Diabatic representation' )

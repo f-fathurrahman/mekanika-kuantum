@@ -50,27 +50,24 @@ classdef EigenClass < handle
             prt.disp('EXIT hamilt.eigen constructor')
         end
         
-        function init(obj)
-
-            prt.disp('ENTER hamilt.eigen.init')
-            global hamilt space time
+        function time_var = init(obj, hamilt, space, time_var)
+            % global hamilt space time_var
             
             % Artificial mapping of eigenstates onto time step 
-            time.steps.m_start  = obj.start;
-            time.steps.m_stop   = obj.stop;
+            time_var.steps.m_start  = obj.start;
+            time_var.steps.m_stop   = obj.stop;
             obj.number          = obj.stop - obj.start + 1;
-            time.steps.m_number = obj.number;
-            time.steps.m_grid   = (obj.start : obj.stop)';
-            time.steps.t_total  = obj.stop;
-            time.steps.s_delta  = 1e-10; % dummy setup to avoid crashes
+            time_var.steps.m_number = obj.number;
+            time_var.steps.m_grid   = (obj.start : obj.stop)';
+            time_var.steps.t_total  = obj.stop;
+            time_var.steps.s_delta  = 1e-10; % dummy setup to avoid crashes
 
             % Matrix size
             obj.mat_size = space.n_tot * hamilt.coupling.n_eqs;
-            prt.disp('EXIT hamilt.eigen.init')
         end
             
         % Display objects of this class
-        function disp (obj)
+        function disp(obj)
             
             prt.disp('***************************************************************')
             prt.disp('Solve TISE by direct diagonalization of the Hamiltonian  ')

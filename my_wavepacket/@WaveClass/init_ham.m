@@ -1,9 +1,5 @@
-%--------------------------------------------------------------------------
-%
 % Initialize (quantum) Hamiltonian operator for
 % use with wave functions represented on grids
-%
-%--------------------------------------------------------------------------
 
 function [hamilt, space, time_var] = init_ham(state, hamilt, space, time_var)
 

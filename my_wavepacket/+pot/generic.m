@@ -45,8 +45,12 @@ classdef generic < handle
         end
         
         % Display potential, overloading default disp method
-        function disp (obj)
-            global hamilt
+        function disp(obj)
+            prt.disp('Generic potential class')
+        end
+
+        function disp_info(obj, hamilt)
+            % global hamilt
             prt.disp('***************************************************************')
             if obj.row == obj.col
                 prt.disp(['Potential energy for channel ' hamilt.coupling.labels{obj.row} ':'])
@@ -61,13 +65,11 @@ classdef generic < handle
         end
         
         % Grid representation of potential energy function
-        function grid (obj)
-            global space
-            
+        function grid(obj, space)
+            % global space    
             if ~obj.empty
-                obj.dvr = V ( obj, space.dvr );
+                obj.dvr = V( obj, space.dvr );
             end
-            
         end
         
     end

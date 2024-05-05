@@ -1,22 +1,9 @@
-%-------------------------------------------------------------------------
-%
 % Solve the time-independent Schroedinger equation to get eigenstates
 % and energies in pseudospectral representation using DVR/FBR techniques 
 % 
 % Part 3/3: Diagonalizing the Hamiltonian
-%
-%--------------------------------------------------------------------------
 
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2004-2023 Burkhard Schmidt's group
-%               2007-2011 Ulf Lorenz
-%               2011 Ulf Lorenz
-%
-% see the README file for license details.
-
-function diag (obj)
+function diag(obj)
 
 % Find eigenvalues and eigenvectors of Hamiltonian matrix
 tim = cputime;
