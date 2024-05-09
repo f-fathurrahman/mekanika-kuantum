@@ -112,25 +112,25 @@ end
 %% Initialization
 
 % Initializes general information and sets up log files.
-prt.init (mfilename('fullpath'));
+prt.init(mfilename('fullpath'));
 
 % Initialize spatial discretization for each degree of freedom
-dof.init (state);
+dof.init(state);
 
 % Initialize Hamiltonian operator
-init_ham (state);
+init_ham(state);
 
 % Initialize temporal discretization
-init (time.steps);
+init(time.steps);
 
 % Initialize the electric field
 efi.init;
 
 % Initialize wave functions / densities
-init_obj (state);
+init_obj(state);
 
 % Transform to adiabatic representation (if desired)
-adiabatic ( state, -1 );
+adiabatic(state, -1);
 
 % Initialize expectation values and uncertainties of observables
 obs.init;
@@ -139,25 +139,25 @@ obs.init;
 for step = 1 : time.steps.m_number
     
     % Numerical propagation using pde solvers, possibly with absorbing boundary conditions
-    propagate ( state, step );
+    propagate( state, step );
     
     % Transform to adiabatic representation (if desired)
-    adiabatic ( state, step, 'dia2adi' );
+    adiabatic( state, step, 'dia2adi' );
     
     % Expectation values and uncertainties of observables
-    observe ( state, step );
+    observe( state, step );
     
     % Logging and plot title
-    obs.log ( step );
+    obs.log( step );
         
     % Show visualization of densities and expectation values
-    vis.show ( state, step );
+    vis.show( state, step );
     
     % Transform back to diabatic representation
-    adiabatic ( state, step, 'adi2dia' );
+    adiabatic( state, step, 'adi2dia' );
         
     % Save the states in data files
-    save ( state, step );
+    save( state, step );
     
     % Terminate imaginary time propagation if convergence is reached
     if strcmpi(info.program,'qm_propa') && isa (time.propa,'tmp.wave.cheby_imag')

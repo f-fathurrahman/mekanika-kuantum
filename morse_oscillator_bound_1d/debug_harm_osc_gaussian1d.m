@@ -16,7 +16,7 @@ space.dof{1}.mass  = 1;                  % Mass for the kinetic energy
 
 % Temporal discretization
 time.steps.m_start  = 000;               % Index of initial time step
-time.steps.m_stop   = 020;               % Index of final time step
+time.steps.m_stop   = 002;               % Index of final time step
 time.steps.m_delta  = pi/10;             % Size of time steps 
 time.steps.s_number =  100;              % Number of sub steps per time step
 
