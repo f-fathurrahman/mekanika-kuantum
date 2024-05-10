@@ -74,8 +74,8 @@ classdef WaveClass < generic & handle
         
         observe(obj, step)          % Expectation values / uncertainties
         
-        init_ham(obj, e, norm)       % Application of Hamiltonian
-        
+        [hamilt, space, time_var] = init_ham(obj, hamilt, space, time_var)
+
         apply_ham(obj, efield, norm)  % Application of Hamiltonian
         
         adiabatic(obj, step, direction) % Adiabatic<=>diabatic transformation

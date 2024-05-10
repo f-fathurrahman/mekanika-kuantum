@@ -17,15 +17,15 @@ end
 % XXX: This is currently disabled as it uses and modify global variable heavily.
 %prt.init(mfilename('fullpath'), info);
 
-
-prt.disp('***********************************')
-prt.disp('DEBUG Morse oscillator (OH radical)')
-prt.disp('***********************************')
-
 % Initialize state (using wavefunction)
 state = WaveClass(); % will call a constructor (defined in @wave/wave)
 state.save_export = false;
 % state object is initialized here
+
+% Calling a few constructors: temporal discretization
+% Not really needed for bound states calculation
+time_var.steps  = tmp.StepsClass;
+time_var.efield = tmp.EfieldClass;
 
 % Setup Hamiltonian
 hamilt.coupling = CouplingClass();
@@ -45,6 +45,9 @@ space.dof{1}.x_min = -7.0;               % Lower bound of grid
 space.dof{1}.x_max =  7.0;               % Upper bound of grid
 
 % Razavy Potential: beta=0.1, kappa=-7
+prt.disp('')
+prt.disp('Initializing Razavy potential')
+prt.disp('-----------------------------')
 hamilt.pot{1,1}          = pot.RazavyClass();  % Hyperbolic potential
 hamilt.pot{1,1}.modified = true;         % Use modified version
 hamilt.pot{1,1}.eta      = -0.7;         % prefactor of cosh
@@ -55,12 +58,11 @@ hamilt.eigen.start = 0;
 hamilt.eigen.stop  = 3;
 
 % Initialize spatial discretization for each degree of freedom
-space = myfuncs.dof_init(state, space);
+space = dof_init(state, space);
 % This call will modify or update global variable space
 
 % Initialize Hamiltonian operator
-%init_ham(state); % in case of state=wave it will call wave.init_ham
-do_init_ham; % a script
+[hamilt, space, time_var] = state.init_ham(hamilt, space, time_var);
 
 % initialize the eigen object
 % at this point hamiltonian matrix is not yet calculated,
