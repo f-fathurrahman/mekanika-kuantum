@@ -1,0 +1,1244 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Persamaan Schroedinger bergantung waktu, time-dependent Schroedinger equation,
+ disingkah TDSE:
+\begin_inset Formula 
+\[
+\imath\hbar\frac{\partial}{\partial t}\Psi_{\mathrm{S}}(t)=H\Psi_{\mathrm{S}}(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solusi formal menggunakan operator evolusi waktu (time evolution operator):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(t)=\mathrm{e}^{-\imath Ht/\hbar}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+yang maps 
+\begin_inset Formula $\Psi_{\mathrm{S}}(0)$
+\end_inset
+
+ ke 
+\begin_inset Formula $\Psi_{\mathrm{S}}(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Operator evolusi ini sendiri memenuhi Persamaan Schroedinger bergantung-waktu:
+ Time evolution operator also satisfies TDSE: $$ 
+\backslash
+imath 
+\backslash
+hbar 
+\backslash
+dot{U}(t) = H U(t) $$ with initial condition $U(0) = 1$.
+\end_layout
+
+\begin_layout Standard
+## Time propagation using finite-difference
+\end_layout
+
+\begin_layout Standard
+Discretize time using temporal grid points: $t = i
+\backslash
+Delta t$
+\end_layout
+
+\begin_layout Standard
+Use forward difference approximation to first derivative wrt time: $$ 
+\backslash
+frac{
+\backslash
+partial 
+\backslash
+Psi}{
+\backslash
+partial t} = 
+\backslash
+frac{
+\backslash
+Psi(t + 
+\backslash
+Delta t) - 
+\backslash
+Psi(t)}{
+\backslash
+Delta t} $$ or centered difference: $$ 
+\backslash
+frac{
+\backslash
+partial 
+\backslash
+Psi}{
+\backslash
+partial t} = 
+\backslash
+frac{
+\backslash
+Psi(t + 
+\backslash
+Delta t) - 
+\backslash
+Psi(t - 
+\backslash
+Delta t)}{2
+\backslash
+Delta t} $$
+\end_layout
+
+\begin_layout Standard
+Apply these to TDSE, we obtain, for example, in case of centered difference:
+ $$ 
+\backslash
+imath 
+\backslash
+hbar 
+\backslash
+frac{
+\backslash
+partial}{
+\backslash
+partial t} 
+\backslash
+Psi(t) = H 
+\backslash
+Psi(t) $$ We obtain the following scheme: $$ 
+\backslash
+Psi(t + 
+\backslash
+Delta t) = -2 
+\backslash
+imath 
+\backslash
+Delta t H 
+\backslash
+Psi(t) + 
+\backslash
+Psi(t - 
+\backslash
+Delta t) + 
+\backslash
+mathcal{O}(
+\backslash
+Delta t^3) $$ This is an explicit scheme, given information of $
+\backslash
+Psi$ at two previous time points.
+\end_layout
+
+\begin_layout Standard
+What about backward difference? We will obtain an implicit scheme.
+\end_layout
+
+\begin_layout Standard
+## Free Gaussian wave packet
+\end_layout
+
+\begin_layout Standard
+Hamiltonian: $$ H_{0} = -
+\backslash
+frac{h^2}{2m} 
+\backslash
+frac{
+\backslash
+mathrm{d}^2}{
+\backslash
+mathrm{d}x^2} $$
+\end_layout
+
+\begin_layout Standard
+Free-particle eigenstates: $$ 
+\backslash
+frac{1}{2
+\backslash
+pi} 
+\backslash
+mathrm{e}^{
+\backslash
+imath 
+\backslash
+left[kx - 
+\backslash
+omega(k) t 
+\backslash
+right]} $$
+\end_layout
+
+\begin_layout Standard
+$$ 
+\backslash
+omega(k) = E(k) = 
+\backslash
+frac{k^2}{2m} $$
+\end_layout
+
+\begin_layout Standard
+The wave packet is defined as: $$ 
+\backslash
+psi(x,t) = 
+\backslash
+frac{1}{2
+\backslash
+pi} 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} A(k) 
+\backslash
+, 
+\backslash
+mathrm{e}^{
+\backslash
+imath 
+\backslash
+left[kx - 
+\backslash
+omega(k) t 
+\backslash
+right]} 
+\backslash
+, 
+\backslash
+mathrm{d}k $$
+\end_layout
+
+\begin_layout Standard
+For a Gaussian wave packet the amplitude is defined as $$ A(k) = 
+\backslash
+left( 
+\backslash
+frac{1}{
+\backslash
+sigma
+\backslash
+sqrt{
+\backslash
+pi}} 
+\backslash
+right)^{1/2} 
+\backslash
+exp
+\backslash
+left[ -
+\backslash
+frac{(k - k_0)^2}{2
+\backslash
+sigma^2} 
+\backslash
+right] $$
+\end_layout
+
+\begin_layout Standard
+Integrating over $k$ we obtain: $$ 
+\backslash
+psi(x,t) = 
+\backslash
+left( 
+\backslash
+frac{
+\backslash
+sigma}{
+\backslash
+sqrt{
+\backslash
+pi}(1 + 
+\backslash
+imath 
+\backslash
+Omega t)} 
+\backslash
+right)^{1/2} 
+\backslash
+exp
+\backslash
+left[ -
+\backslash
+frac{
+\backslash
+sigma^2}{2} 
+\backslash
+frac{(x - vt)^2}{1 + 
+\backslash
+imath 
+\backslash
+Omega t} 
+\backslash
+right] 
+\backslash
+exp
+\backslash
+left[ 
+\backslash
+imath k_0 (x - vt) 
+\backslash
+right] $$ where: $v = 
+\backslash
+hbar k_0/m$ and $
+\backslash
+Omega = 
+\backslash
+hbar 
+\backslash
+sigma^2/m$
+\end_layout
+
+\begin_layout Standard
+For $t = 0$ $$ 
+\backslash
+psi(x,0) = 
+\backslash
+left( 
+\backslash
+frac{
+\backslash
+sigma}{
+\backslash
+sqrt{
+\backslash
+pi}} 
+\backslash
+right)^{1/2} 
+\backslash
+underbrace{
+\backslash
+exp
+\backslash
+left[ -
+\backslash
+frac{
+\backslash
+sigma^2}{2}x^2 
+\backslash
+right]}_{
+\backslash
+text{Gaussian}} 
+\backslash
+underbrace{
+\backslash
+exp
+\backslash
+left[
+\backslash
+imath k_0 x
+\backslash
+right]}_{
+\backslash
+text{plane wave}} $$ A Gaussian modulated with plane wave
+\end_layout
+
+\begin_layout Standard
+Probability distribution of the Gaussian wave packet: $$ 
+\backslash
+left| 
+\backslash
+psi(x,t) 
+\backslash
+right|^2 = 
+\backslash
+frac{
+\backslash
+sigma}{
+\backslash
+sqrt{
+\backslash
+pi}(1 + 
+\backslash
+Omega^2 t^2)} 
+\backslash
+exp
+\backslash
+left[ -
+\backslash
+sigma^2 
+\backslash
+frac{(x - vt)^2}{(1 + 
+\backslash
+Omega^2 t^2)} 
+\backslash
+right] $$
+\end_layout
+
+\begin_layout Standard
+## Crank-Nicolson method
+\end_layout
+
+\begin_layout Standard
+$$ 
+\backslash
+mathrm{e}^{
+\backslash
+imath H 
+\backslash
+Delta t/
+\backslash
+hbar} 
+\backslash
+approx 
+\backslash
+left( 1 + 
+\backslash
+frac{
+\backslash
+imath 
+\backslash
+Delta t}{2
+\backslash
+hbar} 
+\backslash
+right)^{-1} 
+\backslash
+left( 1 - 
+\backslash
+frac{
+\backslash
+imath 
+\backslash
+Delta t}{2
+\backslash
+hbar} 
+\backslash
+right) $$
+\end_layout
+
+\begin_layout Standard
+$$ 
+\backslash
+psi(t + 
+\backslash
+Delta t) = 
+\backslash
+left( 1 + 
+\backslash
+frac{
+\backslash
+imath 
+\backslash
+Delta t}{2
+\backslash
+hbar} 
+\backslash
+right)^{-1} 
+\backslash
+left( 1 - 
+\backslash
+frac{
+\backslash
+imath 
+\backslash
+Delta t}{2
+\backslash
+hbar} 
+\backslash
+right) 
+\backslash
+psi(t) $$
+\end_layout
+
+\begin_layout Standard
+## Tannor, Ch 02, Free-particle wavepacket
+\end_layout
+
+\begin_layout Standard
+$V(x) = 0$
+\end_layout
+
+\begin_layout Standard
+$$ H = -
+\backslash
+frac{
+\backslash
+hbar^2}{2m} 
+\backslash
+frac{
+\backslash
+partial^2}{
+\backslash
+partial x^2} $$
+\end_layout
+
+\begin_layout Standard
+The spatial factor, $
+\backslash
+psi(x)$, of the particular solution must satisfy the equation $$ H 
+\backslash
+psi(x) = E 
+\backslash
+psi(x) $$
+\end_layout
+
+\begin_layout Standard
+The eigenfunctions and eigenvalues are: $$ 
+\backslash
+begin{align} 
+\backslash
+psi(x) & = 
+\backslash
+mathrm{e}^{
+\backslash
+pm 
+\backslash
+imath k x} 
+\backslash
+
+\backslash
+ E & = 
+\backslash
+frac{
+\backslash
+hbar^2 k^2}{2m} = 
+\backslash
+frac{p^2}{2m} 
+\backslash
+end{align} $$
+\end_layout
+
+\begin_layout Standard
+We have defined $p = 
+\backslash
+hbar k$ based on the analogy to the classical expression for kinetic energy
+ $$ E_{
+\backslash
+mathrm{cl}} = 
+\backslash
+frac{1}{2} m v_{
+\backslash
+mathrm{cl}}^2 = 
+\backslash
+frac{p_{
+\backslash
+mathrm{cl}}^2}{2m} $$
+\end_layout
+
+\begin_layout Standard
+Note that the eigenvalues for a continuous spectrum, there is a physically
+ acceptable solution for every value of $k$ (and every positive value of
+ $E$).
+\end_layout
+
+\begin_layout Standard
+Combining the spatial and temporal factors we obtain the particular solution:
+ $$ 
+\backslash
+begin{align} 
+\backslash
+Psi(x,t) & = 
+\backslash
+mathrm{e}^{
+\backslash
+imath k x} 
+\backslash
+mathrm{e}^{-
+\backslash
+imath Et/
+\backslash
+hbar} 
+\backslash
+
+\backslash
+ & = 
+\backslash
+mathrm{e}^{
+\backslash
+imath
+\backslash
+left( kx - Et/
+\backslash
+hbar 
+\backslash
+right)} 
+\backslash
+
+\backslash
+ & = 
+\backslash
+exp
+\backslash
+left[ 
+\backslash
+imath
+\backslash
+left( kx - 
+\backslash
+frac{
+\backslash
+hbar k^2}{2m} t 
+\backslash
+right) 
+\backslash
+right] 
+\backslash
+end{align} $$
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+We discuss some of static features of $
+\backslash
+Psi(x,t)$ in the context of wave equations in general.
+\end_layout
+
+\begin_layout Standard
+First, we fix $t$ and vary $x$.
+ Note that we will have the same value at $x_2$ and $x_1$ if $$ k(x_2 -
+ x_1) = n2
+\backslash
+pi $$ Choosing $n = 1$ gives a unique definition of wavelength: $$ 
+\backslash
+lambda = x_2 - x_1 $$ and therefore $$ k
+\backslash
+lambda = 2
+\backslash
+pi $$ or $$ k = 
+\backslash
+frac{2
+\backslash
+pi}{
+\backslash
+lambda} $$
+\end_layout
+
+\begin_layout Standard
+Thus, $k$ characterizes the the number of radians (which is $2
+\backslash
+pi$ times the number of cycles) per unit distance.
+\end_layout
+
+\begin_layout Standard
+$k$ is called the _wavenumber_
+\end_layout
+
+\begin_layout Standard
+The definition of a wavenumber is a property of the solutions of any wave
+ equation; what is unique to the Schroedinger equation is that $p = 
+\backslash
+hbar k = h/
+\backslash
+lambda$.
+ This is the de Broglie relationship that preceded wave mechanics.
+ Its physical significance is that the momentum proportional to the density
+ of spatial oscillations, that is, number of oscillations per unit length.
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+We now fix $x$ and vary $t$.
+\end_layout
+
+\begin_layout Standard
+We note that any wave of the form $
+\backslash
+mathrm{e}^{
+\backslash
+imath 
+\backslash
+omega t}$ will have the same value at $t_2$ and $t_1$ if $$ 
+\backslash
+omega(t_2 - t_1) = n2
+\backslash
+pi $$
+\end_layout
+
+\begin_layout Standard
+Choosing $n = 1$ defines the fundamental period: $$ 
+\backslash
+tau = t_2 - t_1 $$ and thus $$ 
+\backslash
+omega 
+\backslash
+tau = 2
+\backslash
+pi $$
+\end_layout
+
+\begin_layout Standard
+$
+\backslash
+omega$ characterizes the number of radians per unit time, and is called
+ the _angular frequency_; it is a factor of $2
+\backslash
+pi$ larger than frequency $
+\backslash
+nu$, defined by: $$ 
+\backslash
+nu = 
+\backslash
+frac{1}{
+\backslash
+tau} $$
+\end_layout
+
+\begin_layout Standard
+Again, the definition of an angular frequency is a property of the solutions
+ of any wave equation; what is unique to the Schroedinger equation is that
+ $$ E = 
+\backslash
+hbar 
+\backslash
+omega = h 
+\backslash
+nu $$
+\end_layout
+
+\begin_layout Standard
+This relation is due to Einstein and also preceded wave mechanics by many
+ years.
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+Note that for free particle: $$ 
+\backslash
+omega(k) = 
+\backslash
+frac{
+\backslash
+hbar k^2}{2m} $$ there is a simple functional relation between $
+\backslash
+omega$ and $k$.
+\end_layout
+
+\begin_layout Standard
+This functional relationship is known as the _dispersion_ relation.
+\end_layout
+
+\begin_layout Standard
+As in other wave equations, the dispersion relation $
+\backslash
+omega(k)$ determines both the _phase velocity_ and _group velocity_ of the
+ wave: $$ 
+\backslash
+begin{align} 
+\backslash
+text{phase velocity} & = 
+\backslash
+frac{
+\backslash
+omega}{k} 
+\backslash
+
+\backslash
+ 
+\backslash
+text{group velocity} & = 
+\backslash
+frac{
+\backslash
+partial
+\backslash
+omega}{
+\backslash
+partial k} 
+\backslash
+end{align} $$
+\end_layout
+
+\begin_layout Standard
+It is the specific functional relationship between $
+\backslash
+omega$ and $k$ that distinguish between the motion of quantum waves from
+ other waves that occur in nature.
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+Concept of phase velocity, rewrite the particular solution $$ 
+\backslash
+begin{align} 
+\backslash
+Psi(x,t) & = 
+\backslash
+exp
+\backslash
+left[ 
+\backslash
+imath 
+\backslash
+left( x - 
+\backslash
+frac{
+\backslash
+hbar k}{2m} t 
+\backslash
+right) 
+\backslash
+right] 
+\backslash
+
+\backslash
+ & = 
+\backslash
+exp
+\backslash
+left[ 
+\backslash
+imath 
+\backslash
+left( x - v t 
+\backslash
+right) 
+\backslash
+right] 
+\backslash
+end{align} $$
+\end_layout
+
+\begin_layout Standard
+As long as the quantity $x - vt = 0$ we can change the values of $x$ and
+ $t$ to obtain a constant value of the wave amplitude.
+ This leads to the condition $x = vt$.
+ Since $x$ increases as $t$ increases, $
+\backslash
+Psi(x,t)$ is a wave traveling to the right with a velocity $$ v = 
+\backslash
+frac{
+\backslash
+hbar k}{2m} = 
+\backslash
+frac{
+\backslash
+omega}{k} $$ called the _phase velocity_.
+\end_layout
+
+\begin_layout Standard
+Since the momentum of the wavepacket, $p$, is equal to $
+\backslash
+hbar k$, the phase velocity is $p/2m$, which is one-half the classical expressio
+n for the velocity.
+\end_layout
+
+\begin_layout Standard
+To obtain the classical behavior, we need to use a wavepacket and examine
+ its _group velocity_.
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+The general solution for free-particle wavepacket: $$ 
+\backslash
+Psi(x,t) = 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} a(k) 
+\backslash
+exp
+\backslash
+left[ 
+\backslash
+imath 
+\backslash
+left( x - 
+\backslash
+frac{
+\backslash
+hbar k}{2m} t 
+\backslash
+right) 
+\backslash
+right] 
+\backslash
+, 
+\backslash
+mathrm{d}k $$
+\end_layout
+
+\begin_layout Standard
+The function $a(k)$ may be found from the $t = 0$ wavepacket through the
+ use of Fourier theorem.
+ At $t = 0$ the wavepacket is $$ 
+\backslash
+Psi(x,t) = 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} a(k) 
+\backslash
+mathrm{e}^{
+\backslash
+imath k x}
+\backslash
+, 
+\backslash
+mathrm{d}k $$ Multiplying both sides by $
+\backslash
+exp(-
+\backslash
+imath k' x)$, integrating over $x$, and using the property of Dirac delta
+ function: $$ 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} 
+\backslash
+mathrm{e}^{-
+\backslash
+imath k' x} 
+\backslash
+mathrm{e}^{
+\backslash
+imath k x} 
+\backslash
+, 
+\backslash
+mathrm{d}x = 2
+\backslash
+pi 
+\backslash
+delta(k - k') $$ we find that: $$ a(k) = 
+\backslash
+frac{1}{2
+\backslash
+pi} 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} 
+\backslash
+Psi(x,0) 
+\backslash
+mathrm{e}^{-
+\backslash
+imath k x} 
+\backslash
+mathrm{d}x $$
+\end_layout
+
+\begin_layout Standard
+##
+\end_layout
+
+\begin_layout Standard
+Rewrite: $$ 
+\backslash
+Psi(x,t) = 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} a(k,t) 
+\backslash
+mathrm{e}^{
+\backslash
+imath kx} 
+\backslash
+, 
+\backslash
+mathrm{d}k $$ with definition $$ a(k,t) = a(k) 
+\backslash
+mathrm{e}^{-
+\backslash
+imath 
+\backslash
+frac{hk^2}{2m}t} $$ We find that $$ a(k,t) = 
+\backslash
+frac{1}{2
+\backslash
+pi} 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} 
+\backslash
+Psi(x,t) 
+\backslash
+mathrm{e}^{-
+\backslash
+imath k x} 
+\backslash
+mathrm{d}x $$
+\end_layout
+
+\begin_layout Standard
+We will refer to $a(k,t)$ as the $k$-_representation_ of the wavefunction.
+ 
+\end_layout
+
+\begin_layout Standard
+## Exercise 2.1
+\end_layout
+
+\begin_layout Standard
+(Part a)
+\end_layout
+
+\begin_layout Standard
+Show that if $
+\backslash
+Psi(x,0)$ is normalized it follows that $$ 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} a^{*}(k,t) a(k,t) 
+\backslash
+, 
+\backslash
+mathrm{d}k = 
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} a^{*}(k) a(k) = 
+\backslash
+frac{1}{2
+\backslash
+pi} $$
+\end_layout
+
+\begin_layout Standard
+(Part b)
+\end_layout
+
+\begin_layout Standard
+Combine the result of (Part a) with Eq.
+ 2.18 to show that if $
+\backslash
+Psi(x,0)$ is normalized so is $
+\backslash
+Psi(x,t)$.
+\end_layout
+
+\begin_layout Standard
+## Center of the wavepacket
+\end_layout
+
+\begin_layout Standard
+Consider the time evolution of the center of the wavepacket $$ 
+\backslash
+langle x 
+\backslash
+rangle_{t} = 
+\backslash
+frac{
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} 
+\backslash
+Psi^{*}(x,t) 
+\backslash
+, x 
+\backslash
+, 
+\backslash
+Psi(x,t) 
+\backslash
+, 
+\backslash
+mathrm{d}x } {
+\backslash
+int_{-
+\backslash
+infty}^{
+\backslash
+infty} 
+\backslash
+Psi^{*}(x,t) 
+\backslash
+Psi(x,t) 
+\backslash
+, 
+\backslash
+mathrm{d}x} $$
+\end_layout
+
+\begin_layout Standard
+Using the fact that in the $k$-representation the position operator $
+\backslash
+hat{x}$ is given by: $$ 
+\backslash
+hat{x} = 
+\backslash
+imath 
+\backslash
+frac{
+\backslash
+partial}{
+\backslash
+partial k} $$
+\end_layout
+
+\begin_layout Standard
+Final result: $$ 
+\backslash
+langle x 
+\backslash
+rangle_{t} = 
+\backslash
+frac{
+\backslash
+langle p 
+\backslash
+rangle t}{m} + 
+\backslash
+langle x 
+\backslash
+rangle_{0} $$
+\end_layout
+
+\begin_layout Standard
+Defining the group velocity, $v_g$ as the velocity of the center of the
+ wavepacket we find that $$ v_g = 
+\backslash
+frac{
+\backslash
+mathrm{d}
+\backslash
+langle x 
+\backslash
+rangle_{t}}{
+\backslash
+mathrm{d}t} = 
+\backslash
+frac{
+\backslash
+langle p 
+\backslash
+rangle}{m} $$ which is the analog of the classical relation $v_{
+\backslash
+mathrm{cl}} = 
+\backslash
+frac{p_{
+\backslash
+mathrm{cl}}}{m}$.
+\end_layout
+
+\begin_layout Standard
+We see that for free particle the group velocity is independent of time,
+ as in classical mechanics, and is completely determined by the distribution
+ $a(k)$ at $t = 0$.
+\end_layout
+
+\begin_layout Standard
+That the correspondence between classical and quantum mechanics in Eq.
+ 2.24 survives for an arbitrary distribution of $a(k)$ is surprising and
+ represents a special case of Ehrenfest's theorem.
+\end_layout
+
+\end_body
+\end_document
