@@ -3,14 +3,7 @@
 % Includes free particle (V=0) as a special case
 %--------------------------------------------------------------------------
 
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2016-2017 Burkhard Schmidt
-%
-% see the README file for license details.
-
-classdef taylor < pot.generic & handle
+classdef TaylorClass < pot.generic & handle
     
     properties (Access = public)
         
@@ -23,7 +16,7 @@ classdef taylor < pot.generic & handle
     methods (Access = public)
         
         % Constructor: Set default values
-        function obj = taylor
+        function obj = TaylorClass()
             obj.empty   = false;
             obj.hshift  = [];
             obj.vshift  = 0;
@@ -31,10 +24,9 @@ classdef taylor < pot.generic & handle
         end
         
         % Initialize potential: Set/check parameters
-        function init (obj)
-            global space
+        function init(obj, space)
             if isempty(obj.hshift)
-                obj.hshift = zeros(1,space.n_dim);
+                obj.hshift = zeros(1, space.n_dim);
             end
         end
         
