@@ -1,0 +1,349 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Dari buku Varga
+\end_layout
+
+\begin_layout Standard
+Persamaan Schroedinger bergantung waktu, time-dependent Schroedinger equation,
+ disingkah TDSE:
+\begin_inset Formula 
+\[
+\imath\hbar\frac{\partial}{\partial t}\Psi_{\mathrm{S}}(t)=H\Psi_{\mathrm{S}}(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solusi formal menggunakan operator evolusi waktu (time evolution operator):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(t)=\mathrm{e}^{-\imath Ht/\hbar}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+yang maps 
+\begin_inset Formula $\Psi_{\mathrm{S}}(0)$
+\end_inset
+
+ ke 
+\begin_inset Formula $\Psi_{\mathrm{S}}(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Operator evolusi ini sendiri memenuhi TDSE:
+\begin_inset Formula 
+\[
+\imath\hbar\dot{U}(t)=HU(t)
+\]
+
+\end_inset
+
+dengan syarat awal 
+\begin_inset Formula $U(0)=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Diskritisasi
+\end_layout
+
+\begin_layout Standard
+Temporal grid points 
+\begin_inset Formula $t=i\Delta t$
+\end_inset
+
+, 
+\begin_inset Formula $i=0,\ldots,N_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Beda hingga maju:
+\begin_inset Formula 
+\[
+\frac{\partial\Psi}{\partial t}=\frac{\Psi(t+\Delta t)-\Psi(t)}{\Delta t}+\mathcal{O}(\Delta t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Beda hingga tengah:
+\begin_inset Formula 
+\[
+\frac{\partial\Psi}{\partial t}=\frac{\Psi(t+\Delta t)-\Psi(t-\Delta t)}{2\Delta t}+\mathcal{O}(\Delta t^{3})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Untuk beda hingga tengah, dapat diperoleh persamaan berikut:
+\begin_inset Formula 
+\[
+\imath\hbar\frac{\partial}{\partial t}\Psi(t)=H\Psi(t)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Psi(t+\Delta t)=-2\imath\Delta tH\Psi(t)+\Psi(t-\Delta t)+\mathcal{O}(\Delta t^{3})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Paket gelombang Gaussian bebas
+\end_layout
+
+\begin_layout Standard
+Hamiltonian bebas potential:
+\begin_inset Formula 
+\[
+H_{0}=-\frac{\hbar^{2}}{2m}\frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}}
+\]
+
+\end_inset
+
+dengan 
+\begin_inset Formula $m$
+\end_inset
+
+ adalah massa partikel.
+\end_layout
+
+\begin_layout Standard
+Free-particle eigenstates: 
+\begin_inset Formula 
+\[
+\frac{1}{2\pi}\mathrm{e}^{\imath\left[kx-\omega(k)t\right]}
+\]
+
+\end_inset
+
+dengan 
+\begin_inset Formula 
+\[
+\omega(k)=E(k)=\frac{k^{2}}{2m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Paket gelombang:
+\begin_inset Formula 
+\[
+\psi(x,t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}A(k)\,\mathrm{e}^{\imath\left[kx-\omega(k)t\right]}\,\mathrm{d}k
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Amplitudo:
+\begin_inset Formula 
+\[
+A(k)=\left(\frac{1}{\sigma\sqrt{\pi}}\right)^{1/2}\exp\left[-\frac{(k-k_{0})^{2}}{2\sigma^{2}}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Integrasi untuk seluruh 
+\begin_inset Formula $k$
+\end_inset
+
+ diperoleh:
+\begin_inset Formula 
+\[
+\psi(x,t)=\left(\frac{\sigma}{\sqrt{\pi}(1+\imath\Omega t)}\right)^{1/2}\exp\left[-\frac{\sigma^{2}}{2}\frac{(x-vt)^{2}}{1+\imath\Omega t}\right]\exp\left[\imath k_{0}(x-vt)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dengan:
+\begin_inset Formula 
+\[
+v=\frac{\hbar k_{0}}{m}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Omega=\frac{\hbar\sigma^{2}}{m}
+\]
+
+\end_inset
+
+Untuk 
+\begin_inset Formula $t=0$
+\end_inset
+
+: diperoleh
+\begin_inset Formula 
+\[
+\psi(x,0)=\left(\frac{\sigma}{\sqrt{\pi}}\right)^{1/2}\underbrace{\exp\left[-\frac{\sigma^{2}}{2}x^{2}\right]}_{\text{Gaussian}}\underbrace{\exp\left[\imath k_{0}x\right]}_{\text{plane wave}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Distribusi probabilitas:
+\begin_inset Formula 
+\[
+\left|\psi(x,t)\right|^{2}=\frac{\sigma}{\sqrt{\pi}(1+\Omega^{2}t^{2})}\exp\left[-\sigma^{2}\frac{(x-vt)^{2}}{(1+\Omega^{2}t^{2})}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Metode Crank-Nicolson
+\end_layout
+
+\begin_layout Standard
+Aproksimasi operator evolusi waktu
+\begin_inset Formula 
+\[
+U(\Delta t)=e^{\imath H\Delta t/\hbar}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{e}^{\imath H\Delta t/\hbar}\approx\left(1+\frac{\imath\Delta t}{2\hbar}\right)^{-1}\left(1-\frac{\imath\Delta t}{2\hbar}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
