@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "TEMP_*/" : true,
+    "ORIG_*/" : true,
+    "*_files" : true,
+    "IMG_*" : true
+  }
+}
+
