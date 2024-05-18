@@ -70,5 +70,3 @@ for ii = 1:space.n_tot
     allowedindex = find(allowed);
     dvrkin(ii, allowedindex) = kinetic( indices{obj.dof}(ii), indices{obj.dof}(allowedindex) );
 end
-
-disp('<<<<< EXIT dof.fft.kinetic2dvr')

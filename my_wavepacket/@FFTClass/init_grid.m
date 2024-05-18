@@ -1,15 +1,4 @@
-% This file is part of the WavePacket program package for quantum-mechanical
-% simulations, and subject to the GNU General Public license v. 2 or later.
-%
-% Copyright (C) 2004-2017 Burkhard Schmidt's group
-%               2007-2009 Ulf Lorenz
-%
-% see the README file for license details.
-
 function init_grid(obj)
-
-prt.disp('')
-prt.disp('*** ENTER dof.fft.init_grid')
 
 % this is the (constant!) weight in coordinate space 
 obj.x_dlt = (obj.x_max - obj.x_min) / obj.n_pts;
@@ -26,5 +15,3 @@ obj.p_dlt = 2*obj.p_max / obj.n_pts;
 
 % the grid points in momentum space as a column (!) vector
 obj.p_grid = linspace(obj.p_min, obj.p_max - 2*obj.p_max/obj.n_pts, obj.n_pts)';
-
-prt.disp('*** EXIT dof.fft.init_grid')

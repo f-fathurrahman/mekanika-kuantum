@@ -2,7 +2,6 @@ function init_kin(obj, space, time_var, hamilt, fraction, output)
 % global space time_var hamilt
 % No "arguments are modified except obj
 
-
 disp(["nargin = " int2str(nargin)])
 if nargin < 6
     output = true;

@@ -102,8 +102,11 @@ classdef EigenClass < handle
         end
         
         % Other functions, defined in different files within the current directory
-        setup(obj)
+        %setup(obj)
+        setup(obj, hamilt, space)
+
         symm(obj)
+        
         diag(obj)
         
     end

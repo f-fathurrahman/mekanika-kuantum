@@ -35,13 +35,23 @@ classdef FFTClass < handle
     methods (Access = public) % in separate files within *this* directory
         
         dvr = fbr2dvr(obj, fbr)
+
         fbr = dvr2fbr(obj, dvr)
+        
         init_grid(obj)
-        init_kin(obj, fraction, output)
+        
+        %init_kin(obj, fraction, output)
+        init_kin(obj, space, time_var, hamilt, fraction, output)
+        
         kinetic(obj, psi, new)
+        
         kinetic_exp(obj, psi)
-        dvrkin = kinetic2dvr(obj,cutoff,storage)
+        
+        %dvrkin = kinetic2dvr(obj,cutoff,storage)
+        dvrkin = kinetic2dvr(obj, space, cutoff, storage)
+        
         dvr = matrix2dvr(obj, fbr)
+        
         retval = momentum(obj, psi)
 
         % ffr: These methods are disabled
