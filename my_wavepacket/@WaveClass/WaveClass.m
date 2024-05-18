@@ -37,8 +37,6 @@ classdef WaveClass < generic & handle
         
         % Constructor: Setting default values
         function obj = WaveClass()
-            %
-            disp('ENTER wave constructor ');
             % Inherit from constructor of generic superclass
             obj = obj@generic;
             % ffr: why need generic class?
@@ -51,7 +49,6 @@ classdef WaveClass < generic & handle
             
             % Cell array with bound states; only for 'cheby_imag' 
             obj.bound = {};
-            disp('EXIT wave constructor');
             %
         end
  
@@ -66,6 +63,9 @@ classdef WaveClass < generic & handle
         end
         
         % More methods: see separate files
+        % ffr: If the method signatures are changed then it also
+        % should be changed here
+
         init_obj(obj)                % Initial conditions
 
         propagate(obj, step)          % Propagation

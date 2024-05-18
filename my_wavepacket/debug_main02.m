@@ -32,10 +32,6 @@ hamilt.coupling = CouplingClass();
 hamilt.eigen    = EigenClass();
 hamilt.truncate = TruncateClass();
 
-hamilt.truncate.e_min  = -15.0;          % Lower truncation of energy
-hamilt.truncate.e_max  = 1000.0;         % Upper truncation of energy
-
-
 space.n_dim = 1;
 % Initialize space.dof{1} as fft object
 space.dof{1} = FFTClass();  % using fft grid
@@ -43,6 +39,9 @@ space.dof{1}.mass  = 1/2;                % Particle mass
 space.dof{1}.n_pts = 128;                % Number of grid points
 space.dof{1}.x_min = -7.0;               % Lower bound of grid
 space.dof{1}.x_max =  7.0;               % Upper bound of grid
+
+hamilt.truncate.e_min  = -15.0;
+hamilt.truncate.e_max  = 1000.0;
 
 % Razavy Potential: beta=0.1, kappa=-7
 prt.disp('')
@@ -67,7 +66,7 @@ space = dof_init(state, space);
 % initialize the eigen object
 % at this point hamiltonian matrix is not yet calculated,
 % but its size and several fields are already defined
-time_var = hamilt.eigen.init(hamilt, space, time_var)
+time_var = hamilt.eigen.init(hamilt, space, time_var);
 
 
 % Calculate Hamiltonian matrix elements here

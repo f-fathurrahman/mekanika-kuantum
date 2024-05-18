@@ -22,7 +22,6 @@ time_var.steps.s_delta = 1e-10; % set to dummy value
 
 % Kinetic operators associated with each type of DVR
 for k = 1:space.n_dim
-    %init_kin(space.dof{k}, space, time_var, hamilt, 1);
     space.dof{k}.init_kin(space, time_var, hamilt, 1)
 end
 
