@@ -1,0 +1,25 @@
+(* Contoh penggunaan `Band` pada `SparseArray`: *)
+
+SparseArray[ {
+   Band[{1, 1}] -> x,
+   Band[{2, 1}] -> y
+}, {5, 5}] // MatrixForm
+
+SparseArray[ {
+   Band[{1, 1}] -> x,
+   Band[{1, 2}] -> y
+}, {5, 5}] // MatrixForm
+
+SparseArray[ {
+   Band[{1, 1}] -> x,
+   Band[{1, 3}] -> y
+}, {5, 5}] // MatrixForm
+
+Band[{1,1}]
+
+SparseArray[ {
+   Band[{2, 2}] -> {1,2,3,4},
+   Band[{1, 3}] -> y
+}, {5, 5}] // MatrixForm
+
+

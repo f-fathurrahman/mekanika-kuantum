@@ -12,11 +12,29 @@
 (*     name: wolframlanguage13.3 *)
 (* --- *)
 
+(* %% [markdown] *)
+(* Menguji apakah nilai S yang diberikan valid (applicable) atau tidak *)
+
 (* %% *)
 SpinQ[S_] := IntegerQ[2*S] && (S >= 0)
 
 (* %% *)
+SpinQ[1/3]
+
+(* %% *)
+SpinQ[1/2]
+
+(* %% *)
+SpinQ[-1/2]
+
+(* %% [markdown] *)
+(* Spin 0 (?) *)
+
+(* %% *)
 splus[0] = {{ 0 }} // SparseArray;
+
+(* %% [markdown] *)
+(* Operator Splus *)
 
 (* %% *)
 splus[S_?SpinQ] := splus[S] =
@@ -28,6 +46,87 @@ splus[S_?SpinQ] := splus[S] =
 ]
 
 (* %% *)
+splus[1/2] // MatrixForm
+
+(* %% *)
 splus[3/2] // MatrixForm
+
+(* %% *)
+sminus[S_?SpinQ] := Transpose[splus[S]]
+
+(* %% *)
+sminus[3/2] // MatrixForm
+
+(* %% *)
+sx[S_?SpinQ] := sx[S] = (splus[S] + sminus[S])/2
+
+(* %% *)
+sy[S_?SpinQ] := sy[S] = (splus[S] - sminus[S])/(2*I)
+
+(* %% *)
+sz[S_?SpinQ] := sz[S] = SparseArray[
+  Band[{1,1}] -> Range[S, -S, -1],
+  {2*S+1,2*S+1}
+]
+
+(* %% *)
+id[S_?SpinQ] := id[S] = IdentityMatrix[2*S + 1, SparseArray]
+
+(* %% *)
+id[1/2] // MatrixForm
+
+(* %% *)
+sx[1/2] // MatrixForm
+
+(* %% *)
+sy[1/2] // MatrixForm
+
+(* %% *)
+sz[1/2] // MatrixForm
+
+(* %% *)
+2*sy[1/2] // MatrixForm
+
+(* %% *)
+
+(* %% [markdown] jp-MarkdownHeadingCollapsed=true *)
+(* ## Mengenai Table *)
+
+(* %% *)
+Table[ 2*i, {i, 1, 3}]
+
+(* %% [markdown] *)
+(* Ini dapat dianggap seperti `for` loop atau `range` *)
+
+(* %% *)
+Table[ i, {i, -1, 10, 2}]
+
+(* %% *)
+f[v_] := Module[ {t},
+  t = (1 + v)^2;
+  t = Expand[t]
+]
+
+(* %% [markdown] *)
+(* `Module` dapat dianggap seperti subrutin, `S` pada kode di bawah ini adalah variabel lokal, tidak akan bocor ke global scope. *)
+
+(* %% [markdown] jp-MarkdownHeadingCollapsed=true *)
+(* ## Mengenai Module *)
+
+(* %% *)
+Module[ {S},
+  S = 2;
+  Table[
+    Sqrt[ S*(S + 1) - M*(M + 1) ], {M, S-1, -S, -1}
+  ]
+]
+
+(* %% *)
+Module[ {S},
+  S = 2;
+  Table[
+    Sqrt[ S*(S + 1) - M*(M + 1) ], {M, S-1, -S, -1}
+  ]
+]
 
 (* %% *)
