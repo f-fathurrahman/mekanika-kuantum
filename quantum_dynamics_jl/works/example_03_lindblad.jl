@@ -1,4 +1,4 @@
-using QuantumDynamics
+using MyQuantumDynamics
 
 dt = 0.125
 ntimes = 200

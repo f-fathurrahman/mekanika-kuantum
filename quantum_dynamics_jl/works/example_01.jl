@@ -1,6 +1,6 @@
 # from QuantumDynamics.jl paper
 
-using QuantumDynamics
+using MyQuantumDynamics
 
 H = [-0.1im -1.0; -1.0 -0.5im]
 V(t) = 12*cos(10*t)
