@@ -1,0 +1,103 @@
+(* --- *)
+(* jupyter: *)
+(*   jupytext: *)
+(*     text_representation: *)
+(*       extension: .wolfram *)
+(*       format_name: percent *)
+(*       format_version: '1.3' *)
+(*       jupytext_version: 1.16.1 *)
+(*   kernelspec: *)
+(*     display_name: Wolfram Language 13.3 *)
+(*     language: Wolfram Language *)
+(*     name: wolframlanguage13.3 *)
+(* --- *)
+
+(* %% *)
+Needs["Q3`"]
+
+(* %% [markdown] *)
+(* Two-level quantum systems (i.e. qubits), indicated by the symbol `S`: *)
+
+(* %% *)
+Let[ Qubit, S ]
+
+(* %% [markdown] *)
+(* Different qubits can be specified by the "flavor indices" (?), the last of which has special meaning (?) *)
+
+(* %% *)
+{ S[1,None], S[2, None] }
+
+(* %% [markdown] *)
+(* Alternative: *)
+
+(* %% *)
+S[{1,2}, None]
+
+(* %% [markdown] *)
+(* The associated Hilbert space is two dimensional, for many functions dealing with qubits, the final index `None` can be dropped. *)
+
+(* %% *)
+bs = Basis[ S[1,None] ]
+
+(* %% *)
+bs = Basis[ S[1] ]
+
+(* %% [markdown] *)
+(* This is no longer needed? *)
+
+(* %% *)
+KetRegulate[bs]
+
+(* %% [markdown] *)
+(* Each state in the logical basis can also be specified manually. *)
+
+(* %% *)
+vec = Ket[ S[1] -> 1, S[2] -> 0 ];
+vec
+
+(* %% *)
+vec = Ket[ S[1] -> 0, S[2] -> 0 ];
+vec
+
+(* %% *)
+KetRegulate[ vec, {S[1], S[2]} ]
+
+(* %% *)
+Let[Complex, c]
+vec = Ket[ S[1] -> 0] * c[0] + Ket[S[1]->1] * c[1]
+
+(* %% *)
+Ket[0]
+
+(* %% *)
+BlochSphere[ {Red,
+    Bead@BlochVector[
+        (Ket[0] + Ket[1])/Sqrt[2]
+    ] },
+    ImageSize -> Small
+]
+
+(* %% *)
+vec = ( Ket[0] + I*Ket[1] ); (* / Sqrt[2]; *)
+BlochVector[vec]
+BlochSphere[ {Red,
+    Bead@{0,-1,0} (*BlochVector[vec]*) },
+    ImageSize -> Small
+]
+
+(* %% [markdown] *)
+(* ## Entanglement *)
+
+(* %% [markdown] *)
+(* Consider the following state of a two-qubit state *)
+
+(* %% *)
+ket = Ket[{1,1}] + Ket[{1,0}] + Ket[{0,1}];
+ket
+
+(* %% *)
+ket = Ket[ S[1]->1, S[2]->1 ] ;
+ket
+
+(* %% *)
+SchmidtDecomposition[ket]
