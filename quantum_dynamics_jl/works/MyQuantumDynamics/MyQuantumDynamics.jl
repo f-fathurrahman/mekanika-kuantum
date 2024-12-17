@@ -25,10 +25,10 @@ export Spectroscopy
 include("AbInitio/AbInitio.jl")
 export AbInitio
 
-include("../precompile/generate_precompile.jl")
+#include("../precompile/generate_precompile.jl")
 # include("../precompile/precompile.jl")
 # _precompile_()
 
-include("../precompile/compile.jl")
+#include("../precompile/compile.jl")
 
 end
