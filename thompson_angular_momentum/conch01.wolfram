@@ -1,0 +1,60 @@
+(* --- *)
+(* jupyter: *)
+(*   jupytext: *)
+(*     text_representation: *)
+(*       extension: .wolfram *)
+(*       format_name: percent *)
+(*       format_version: '1.3' *)
+(*       jupytext_version: 1.16.1 *)
+(*   kernelspec: *)
+(*     display_name: Wolfram Language 13.3 *)
+(*     language: Wolfram Language *)
+(*     name: wolframlanguage13.3 *)
+(* --- *)
+
+(* %% *)
+Print["\nANGULAR MOMENTUM: Rotational Symmetries\n"]
+Print["Notebook Shell: Helical Shell\n"]
+(*Unprotect[In, Out];
+C1ear[In,Out];
+Protect[In, Out];
+Clear[h, r];*)
+
+(* %% editable=true slideshow={"slide_type": ""} *)
+h = 2;
+r = 7/4;
+conch = ParametricPlot3D[
+{ phi*Cos[phi]*Cos[t],
+  phi*Sin[phi]*Cos[t],
+  phi*Sin[t] + h*phi },
+    {t, 0, 2*Pi},
+    {phi, 0, 2*Pi*r},
+    PlotPoints->20
+]
+
+(* %% *)
+h = 2;
+r = 7/4;
+conch = ParametricPlot3D[
+{ phi*Cos[phi]*Cos[t],
+  phi*Sin[phi]*Cos[t],
+  phi*Sin[t] + h*phi },
+    {t, 0, 2*Pi},
+    {phi, 0, 2*Pi*r},
+    PlotPoints->20, DisplayFunction -> Identity
+]
+
+(* %% *)
+showSurf = Show[conch,
+    Boxed->False,
+    Axes->Fa1se,
+    DisplayFunction->$DisplayFunction]
+
+(* %% [markdown] jp-MarkdownHeadingCollapsed=true *)
+(* ### Example *)
+
+(* %% *)
+ParametricPlot3D[{Cos[u], Sin[u] + Cos[v], Sin[v]}, {u, 0, 
+  2*Pi}, {v, -Pi, Pi}]
+
+(* %% *)
