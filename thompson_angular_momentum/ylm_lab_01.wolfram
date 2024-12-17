@@ -1,0 +1,33 @@
+(* --- *)
+(* jupyter: *)
+(*   jupytext: *)
+(*     text_representation: *)
+(*       extension: .wolfram *)
+(*       format_name: percent *)
+(*       format_version: '1.3' *)
+(*       jupytext_version: 1.16.1 *)
+(*   kernelspec: *)
+(*     display_name: Wolfram Language 13.3 *)
+(*     language: Wolfram Language *)
+(*     name: wolframlanguage13.3 *)
+(* --- *)
+
+(* %% vscode={"languageId": "wolfram"} *)
+L = 2; m = -1;
+
+(* %% vscode={"languageId": "wolfram"} *)
+absYLM[theta_, phi_] = ComplexExpand[ Abs[
+  SphericalHarmonicY[L,m,theta,phi] ] ];
+
+(* %% vscode={"languageId": "wolfram"} *)
+yLm = SphericalHarmonicY[L, m, theta, phi]
+
+(* %% vscode={"languageId": "wolfram"} *)
+g = SphericalPlot3D[
+  Evaluate[ absYLM[theta,phi] ],
+  {theta, 0, Pi},
+  {phi, Pi/6, 11*Pi/6},
+  ViewPoint->{2.0, -1.0, 1.0},
+  Boxed->False,
+  Axes->False
+]

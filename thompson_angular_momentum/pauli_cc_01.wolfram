@@ -1,0 +1,48 @@
+(* --- *)
+(* jupyter: *)
+(*   jupytext: *)
+(*     text_representation: *)
+(*       extension: .wolfram *)
+(*       format_name: percent *)
+(*       format_version: '1.3' *)
+(*       jupytext_version: 1.16.1 *)
+(*   kernelspec: *)
+(*     display_name: Wolfram Language 13.3 *)
+(*     language: Wolfram Language *)
+(*     name: wolframlanguage13.3 *)
+(* --- *)
+
+(* %% vscode={"languageId": "wolfram"} *)
+Print["\nANGULAR MOMENTUM: Rotational Symmetries\n"]
+Print["Notebook PauliCC: Coulomb scattering of C nuclei\n"]
+
+(* %% vscode={"languageId": "wolfram"} *)
+(* Functions for Coulomb-scattering amplitudes *)
+fR[th_, sgn_] := Exp[ 2*I*eta*Log[Sin[th/2]] ] / Sin[th/2]^2
+fSym[th_, sgn_] := fR[th,sgn] + sgn*fR[Pi-th, sgn]
+
+(* %% vscode={"languageId": "wolfram"} *)
+SigPlot[F_, sgn_] := Plot[
+  Log[ Abs[F[th, sgn]]^2 ],
+  {th, Pi/9, 2*Pi/3},
+  PlotPoints->80,
+  Ticks->None,
+  Axes->None,
+  DisplayFunction->Identity
+];
+
+
+(* %% vscode={"languageId": "wolfram"} *)
+Clear[eta]; eta = 15; (*Sommerfeld parameter *)
+
+(* %% vscode={"languageId": "wolfram"} *)
+C12w12C = SigPlot[fSym, +1];
+C13w12C = SigPlot[fR, 0];
+C13w13C = SigPlot[fSym, -1];
+
+(* %% vscode={"languageId": "wolfram"} *)
+?GraphicsGrid
+
+(* %% vscode={"languageId": "wolfram"} *)
+Show[ GraphicsGrid[ { {C12w12C, C13w12C, C13w13C} }] ]
+(* GraphicsArray is obsolete *)
