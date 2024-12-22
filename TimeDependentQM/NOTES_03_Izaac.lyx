@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -7,13 +7,16 @@
 \textclass article
 \begin_preamble
 \usepackage{braket}
+% Added by lyx2lyx
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
 \end_preamble
 \use_default_options true
-\maintain_unincluded_children false
+\maintain_unincluded_children no
 \language english
 \language_package default
-\inputencoding auto
-\fontencoding global
+\inputencoding auto-legacy
+\fontencoding auto
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -21,7 +24,9 @@
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
-\font_osf false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -31,6 +36,8 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement class
+\float_alignment class
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -55,7 +62,9 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_formatted_ref 0
 \use_minted 0
+\use_lineno 0
 \index Index
 \shortcut idx
 \color #008000
@@ -63,7 +72,7 @@
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation skip
-\defskip smallskip
+\defskip halfline
 \is_math_indent 0
 \math_numbering_side default
 \quotes_style english
@@ -71,17 +80,24 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\tablestyle default
 \tracking_changes false
 \output_changes false
+\change_bars false
+\postpone_fragile_content false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
 
 \begin_layout Standard
-Izaac, Computational Quantum Mechanics, Ch 11
+Izaac,
+ Computational Quantum Mechanics,
+ Ch 11
 \end_layout
 
 \begin_layout Standard
@@ -91,7 +107,7 @@ Operator propagasi uniter (unitary propagation operator)
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\imath\hbar\frac{\partial}{\partial}\psi(\mathbf{x},t)=\hat{H}\psi(\mathbf{x},t)
+\imath\hbar\frac{\partial}{\partial t}\psi(\mathbf{x},t)=\hat{H}\psi(\mathbf{x},t)
 \]
 
 \end_inset
@@ -124,14 +140,14 @@ t_{n}=t_{0}+n\Delta t
 
 \end_inset
 
-Dengan menggunakan ini potensial dapat dianggap independen terhadap waktu
- dalam rentang waktu 
+Dengan menggunakan ini potensial dapat dianggap independen terhadap waktu dalam rentang waktu 
 \begin_inset Formula $\Delta t$
 \end_inset
 
 .
- Artinya, kita memecahkan masalah menjadi banyak masalah dengan potensial
- yang independen terhadap waktu, 
+ Artinya,
+ kita memecahkan masalah menjadi banyak masalah dengan potensial yang independen terhadap waktu,
+ 
 \begin_inset Formula $V_{n}(\mathbf{x})$
 \end_inset
 
@@ -181,8 +197,8 @@ Sifat uniter ini dapat dilihat dari:
 \end_layout
 
 \begin_layout Standard
-Sifat uniter ini penting, karena sifat ini menjamin bahwa hasil perkalian-dalam
- pada ruang Hilber tetap invarian selama propagasi waktu:
+Sifat uniter ini penting,
+ karena sifat ini menjamin bahwa hasil perkalian-dalam pada ruang Hilber tetap invarian selama propagasi waktu:
 \begin_inset Formula 
 \[
 \left\langle \psi(t)|\psi(t)\right\rangle =\left\langle \psi(0)\hat{U}|\hat{U}\psi(t)\right\rangle =\left\langle \psi(0)\left|\hat{U}^{\dagger}\hat{U}\right|\psi(0)\right\rangle =\left\langle \psi(0)|\psi(0)\right\rangle 
@@ -190,13 +206,12 @@ Sifat uniter ini penting, karena sifat ini menjamin bahwa hasil perkalian-dalam
 
 \end_inset
 
-artinya, suatu keadaan ternormalisasi akan tetap ternormalisasi oleh operator
- propagasi waktu.
+artinya,
+ suatu keadaan ternormalisasi akan tetap ternormalisasi oleh operator propagasi waktu.
 \end_layout
 
 \begin_layout Standard
-Sifat penting lain dari operator propagasi waktu adalah sifat reversibel
- atau simetrik terhadap waktu:
+Sifat penting lain dari operator propagasi waktu adalah sifat reversibel atau simetrik terhadap waktu:
 \begin_inset Formula 
 \[
 \hat{U}(-\Delta t)\hat{U}(\Delta t)\left|\psi(x,t)\right\rangle =\left|\psi(x,t)\right\rangle 
@@ -204,8 +219,7 @@ Sifat penting lain dari operator propagasi waktu adalah sifat reversibel
 
 \end_inset
 
-yaitu membalikkan arah propagasi waktu akan mengembalikan keadaan ke keadaan
- awal sistem.
+yaitu membalikkan arah propagasi waktu akan mengembalikan keadaan ke keadaan awal sistem.
 \end_layout
 
 \begin_layout Subsection*
@@ -213,7 +227,8 @@ Metode Euler
 \end_layout
 
 \begin_layout Standard
-Metode paling sederhana, 1st order.
+Metode paling sederhana,
+ 1st order.
 \end_layout
 
 \begin_layout Standard
@@ -233,7 +248,8 @@ Diskritisasi spasial
 \end_layout
 
 \begin_layout Standard
-Dapat digunakan metode beda hingga, misalnya dengan 5-titik:
+Dapat digunakan metode beda hingga,
+ misalnya dengan 5-titik:
 \begin_inset Formula 
 \[
 \frac{\mathrm{d}^{2}}{\mathrm{d}x}\psi_{j}(t)=\frac{16\left(\psi_{j+1}(t)+\psi_{j-1}(t)\right)-30\psi_{j}(t)-\left(\psi_{j+2}(t)+\psi_{j-2}(t)\right)}{12\Delta x^{2}}
@@ -245,7 +261,8 @@ Dapat digunakan metode beda hingga, misalnya dengan 5-titik:
 \end_layout
 
 \begin_layout Standard
-dengan substitusi formula ini ke metode Euler diperoleh, abaikan suku 
+dengan substitusi formula ini ke metode Euler diperoleh,
+ abaikan suku 
 \begin_inset Formula $\mathcal{O}(\Delta t)$
 \end_inset
 
@@ -282,8 +299,7 @@ atau:
 
 \end_inset
 
-Kekurangan utama dari metode Euler ini adalah hasil aproksimasi operator
- propagasi tidak lagi bersifat uniter:
+Kekurangan utama dari metode Euler ini adalah hasil aproksimasi operator propagasi tidak lagi bersifat uniter:
 \begin_inset Formula 
 \[
 \left(1-\frac{\imath\Delta t}{\hbar}\hat{H}\right)\left(1-\frac{\imath\Delta t}{\hbar}\hat{H}\right)^{\dagger}=\left(1-\frac{\imath\Delta t}{\hbar}\hat{H}\right)\left(1+\frac{\imath\Delta t}{\hbar}\hat{H}\right)=1+\left(\frac{\Delta t}{\hbar}\right)^{2}\hat{H}^{2}\neq I
@@ -299,7 +315,7 @@ Backward Euler
 \end_layout
 
 \begin_layout Standard
-Aproksimasi orde pertama untuk operator 
+Dapat dianggap sebagai aproksimasi orde pertama untuk operator 
 \begin_inset Formula $\hat{U}^{\dagger}$
 \end_inset
 
@@ -338,7 +354,8 @@ Abaikan suku dengan
 
 \end_inset
 
-Meskipun metode ini lebih stabil, namun skema ini masih tidak uniter.
+Meskipun metode ini lebih stabil,
+ namun skema ini masih tidak uniter.
 \end_layout
 
 \begin_layout Subsection*
@@ -354,7 +371,8 @@ Pada dari
 \begin_inset Formula $t_{0}+\Delta t/2$
 \end_inset
 
-, gunakan forward Euler
+,
+ gunakan forward Euler
 \begin_inset Formula 
 \[
 \psi\left(\mathbf{x},t+\frac{\Delta t}{2}\right)=\left(1-\frac{\imath\Delta t}{2\hbar}\hat{H}\right)\psi(\mathbf{x},t)
@@ -430,8 +448,7 @@ dengan
 \end_inset
 
 adalah operator potensial.
- Dalam hal ini kita melakukan pemisahan propagasi fungsi gelombang menjadi
- dua propagasi 
+ Dalam hal ini kita melakukan pemisahan propagasi fungsi gelombang menjadi dua propagasi 
 \begin_inset Quotes eld
 \end_inset
 
@@ -454,8 +471,8 @@ bebas
 \end_layout
 
 \begin_layout Standard
-Therefore, this allows us to replace the exponential operators with the
- exponential of the eigenvalues,
+Therefore,
+ this allows us to replace the exponential operators with the exponential of the eigenvalues,
 \end_layout
 
 \begin_layout Standard

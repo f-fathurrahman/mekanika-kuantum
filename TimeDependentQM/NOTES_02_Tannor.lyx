@@ -1,16 +1,21 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+% Added by lyx2lyx
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\end_preamble
 \use_default_options true
-\maintain_unincluded_children false
+\maintain_unincluded_children no
 \language english
 \language_package default
-\inputencoding auto
-\fontencoding global
+\inputencoding auto-legacy
+\fontencoding auto
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -18,7 +23,9 @@
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
-\font_osf false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -28,6 +35,8 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement class
+\float_alignment class
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -52,7 +61,9 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_formatted_ref 0
 \use_minted 0
+\use_lineno 0
 \index Index
 \shortcut idx
 \color #008000
@@ -60,7 +71,7 @@
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation skip
-\defskip smallskip
+\defskip halfline
 \is_math_indent 0
 \math_numbering_side default
 \quotes_style english
@@ -68,17 +79,24 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\tablestyle default
 \tracking_changes false
 \output_changes false
+\change_bars false
+\postpone_fragile_content false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
 
 \begin_layout Standard
-Tannor, Ch 02, Free-particle wavepacket
+Tannor,
+ Ch 02,
+ Free-particle wavepacket
 \end_layout
 
 \begin_layout Standard
@@ -161,9 +179,8 @@ E_{\mathrm{cl}}=\frac{1}{2}mv_{\mathrm{cl}}^{2}=\frac{p_{\mathrm{cl}}^{2}}{2m}
 \end_layout
 
 \begin_layout Standard
-Note that the eigenvalues for a continuous spectrum, there is a physically
- acceptable solution for every value of $k$ (and every positive value of
- $E$).
+Note that the eigenvalues for a continuous spectrum,
+ there is a physically acceptable solution for every value of $k$ (and every positive value of $E$).
 \end_layout
 
 \begin_layout Standard
@@ -178,7 +195,8 @@ Combining the spatial and temporal factors we obtain the particular solution:
 
 \end_inset
 
-ie, particular solution:
+ie,
+ particular solution:
 \begin_inset Formula 
 \begin{equation}
 \Psi(x,t)=\mathrm{e}^{\imath\left(kx-\frac{\hbar k^{2}}{2m}t\right)}
@@ -198,7 +216,8 @@ We discuss some of static features of
 \end_layout
 
 \begin_layout Standard
-First, we fix 
+First,
+ we fix 
 \begin_inset Formula $t$
 \end_inset
 
@@ -255,7 +274,8 @@ k=\frac{2\pi}{\lambda}
 \end_layout
 
 \begin_layout Standard
-Thus, 
+Thus,
+ 
 \begin_inset Formula $k$
 \end_inset
 
@@ -278,15 +298,16 @@ wavenumber
 \end_layout
 
 \begin_layout Standard
-The definition of a wavenumber is a property of the solutions of any wave
- equation; what is unique to the Schroedinger equation is that 
+The definition of a wavenumber is a property of the solutions of any wave equation;
+ what is unique to the Schroedinger equation is that 
 \begin_inset Formula $p=\hbar k=h/\lambda$
 \end_inset
 
 .
  This is the de Broglie relationship that preceded wave mechanics.
- Its physical significance is that the momentum proportional to the density
- of spatial oscillations, that is, number of oscillations per unit length.
+ Its physical significance is that the momentum proportional to the density of spatial oscillations,
+ that is,
+ number of oscillations per unit length.
 \end_layout
 
 \begin_layout Standard
@@ -330,7 +351,8 @@ Choosing
 \begin_inset Formula $n=1$
 \end_inset
 
- defines the fundamental period: 
+ defines the fundamental period:
+ 
 \begin_inset Formula $\tau=t_{2}-t_{1}$
 \end_inset
 
@@ -345,11 +367,13 @@ Choosing
 \begin_inset Formula $\omega$
 \end_inset
 
- characterizes the number of radians per unit time, and is called the 
+ characterizes the number of radians per unit time,
+ and is called the 
 \emph on
 angular frequency
 \emph default
-; it is a factor of 
+;
+ it is a factor of 
 \begin_inset Formula $2\pi$
 \end_inset
 
@@ -357,7 +381,9 @@ angular frequency
 \begin_inset Formula $\nu$
 \end_inset
 
-, defined by: 
+,
+ defined by:
+ 
 \begin_inset Formula $\nu=\dfrac{1}{\tau}=\dfrac{1}{\tau_{2}-\tau_{1}}$
 \end_inset
 
@@ -365,9 +391,9 @@ angular frequency
 \end_layout
 
 \begin_layout Standard
-Again, the definition of an angular frequency is a property of the solutions
- of any wave equation; what is unique to the Schroedinger equation is that
- 
+Again,
+ the definition of an angular frequency is a property of the solutions of any wave equation;
+ what is unique to the Schroedinger equation is that 
 \begin_inset Formula $E=\hbar\omega=h\nu$
 \end_inset
 
@@ -375,12 +401,12 @@ Again, the definition of an angular frequency is a property of the solutions
 \end_layout
 
 \begin_layout Standard
-This relation is due to Einstein and also preceded wave mechanics by many
- years.
+This relation is due to Einstein and also preceded wave mechanics by many years.
 \end_layout
 
 \begin_layout Standard
-Note that for free particle: 
+Note that for free particle:
+ 
 \begin_inset Formula $\omega(k)=\dfrac{\hbar k^{2}}{2m}$
 \end_inset
 
@@ -401,7 +427,8 @@ dispersion relation
 \end_layout
 
 \begin_layout Standard
-As in other wave equations, the dispersion relation 
+As in other wave equations,
+ the dispersion relation 
 \begin_inset Formula $\omega(k)$
 \end_inset
 
@@ -435,13 +462,12 @@ It is the specific functional relationship between
 \begin_inset Formula $k$
 \end_inset
 
- that distinguish between the motion of quantum waves from other waves that
- occur in nature.
+ that distinguish between the motion of quantum waves from other waves that occur in nature.
 \end_layout
 
 \begin_layout Standard
-To explore the concept of phase velocity, rewrite the particular solution
- as 
+To explore the concept of phase velocity,
+ rewrite the particular solution as 
 \begin_inset Formula 
 \[
 \begin{align}\Psi(x,t) & =\exp\left[\imath k\left(x-\frac{\hbar k}{2m}t\right)\right]\\
@@ -477,7 +503,8 @@ As long as the quantity
 \begin_inset Formula $t$
 \end_inset
 
- increases, 
+ increases,
+ 
 \begin_inset Formula $\Psi(x,t)$
 \end_inset
 
@@ -497,19 +524,23 @@ v=\frac{\hbar k}{2m}=\frac{\omega}{k}
 \end_layout
 
 \begin_layout Standard
-Since the momentum of the wavepacket, 
+Since the momentum of the wavepacket,
+ 
 \begin_inset Formula $p$
 \end_inset
 
-, is equal to 
+,
+ is equal to 
 \begin_inset Formula $\hbar k$
 \end_inset
 
-, the phase velocity is 
+,
+ the phase velocity is 
 \begin_inset Formula $p/2m$
 \end_inset
 
-, which is 
+,
+ which is 
 \emph on
 one-half the classical expression
 \emph default
@@ -517,8 +548,8 @@ one-half the classical expression
 \end_layout
 
 \begin_layout Standard
-To obtain the classical behavior, we need to use a wavepacket and examine
- its 
+To obtain the classical behavior,
+ we need to use a wavepacket and examine its 
 \emph on
 group velocity
 \emph default
@@ -567,7 +598,8 @@ Multiplying both sides by
 
 \end_inset
 
-, integrating over 
+,
+ integrating over 
 \begin_inset Formula $x$
 \end_inset
 
@@ -579,7 +611,8 @@ Multiplying both sides by
 
 \end_inset
 
-, and using the property of Dirac delta function:
+,
+ and using the property of Dirac delta function:
 \begin_inset Formula 
 \[
 \int_{-\infty}^{\infty}\mathrm{e}^{-\imath k'x}\mathrm{e}^{\imath kx}\,\mathrm{d}x=2\pi\delta(k-k')
@@ -597,7 +630,8 @@ we find that:
 
 \end_inset
 
-ie, (and by changing 
+ie,
+ (and by changing 
 \begin_inset Formula $k'\rightarrow k$
 \end_inset
 
@@ -613,7 +647,8 @@ a(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Psi(x,0)\mathrm{e}^{-\imath kx}\mathr
 \end_layout
 
 \begin_layout Standard
-Rewrite: 
+Rewrite:
+ 
 \begin_inset Formula 
 \[
 \Psi(x,t)=\int_{-\infty}^{\infty}a(k,t)\mathrm{e}^{\imath kx}\,\mathrm{d}k
@@ -989,8 +1024,7 @@ Subskrip
 \begin_inset Formula $t$
 \end_inset
 
- menunjukkan nilai ekspektasi yang diambil terhadap fungsi gelombang bergantung
- waktu.
+ menunjukkan nilai ekspektasi yang diambil terhadap fungsi gelombang bergantung waktu.
  
 \end_layout
 
@@ -1094,7 +1128,8 @@ dengan:
 \end_layout
 
 \begin_layout Standard
-Final result: 
+Final result:
+ 
 \begin_inset Formula 
 \begin{equation}
 \langle x\rangle_{t}=\frac{\langle p\rangle t}{m}+\langle x\rangle_{0}
@@ -1110,17 +1145,18 @@ Perhatikan bahwa
 \begin_inset Formula $a(k)$
 \end_inset
 
- tidak bergantung waktu, sehingga 
+ tidak bergantung waktu,
+ sehingga 
 \begin_inset Formula $\left\langle p\right\rangle $
 \end_inset
 
  juga tidak bergantung waktu.
- Oleh karena itu: 
+ Oleh karena itu:
+ 
 \begin_inset Formula $\left\langle p\right\rangle _{t}=\left\langle p\right\rangle _{0}=\left\langle p\right\rangle $
 \end_inset
 
-,hasil yang sama dengan mekanika klasik dari partikel bebas (tanpa pengaruh
- gaya atau potensial luar).
+,hasil yang sama dengan mekanika klasik dari partikel bebas (tanpa pengaruh gaya atau potensial luar).
 \end_layout
 
 \begin_layout Standard
@@ -1144,7 +1180,8 @@ Tunjukkan bahwa jika
 \begin_inset Formula $a(k)$
 \end_inset
 
- real, maka 
+ real,
+ maka 
 \begin_inset Formula $\left\langle x\right\rangle _{0}=0$
 \end_inset
 
@@ -1167,7 +1204,8 @@ Untuk
 \begin_inset Formula $a(k)$
 \end_inset
 
- real, maka 
+ real,
+ maka 
 \begin_inset Formula $a^{*}(k)=a(k)$
 \end_inset
 
@@ -1200,7 +1238,8 @@ height "1pt"
 \end_layout
 
 \begin_layout Standard
-Defining the group velocity, 
+Defining the group velocity,
+ 
 \begin_inset Formula $v_{g}$
 \end_inset
 
@@ -1225,8 +1264,8 @@ v_{\mathrm{cl}}=\frac{p_{\mathrm{cl}}}{m}
 
 \begin_layout Standard
 We see that for free particle the group velocity is independent of time,
- as in classical mechanics, and is completely determined by the distribution
- 
+ as in classical mechanics,
+ and is completely determined by the distribution 
 \begin_inset Formula $a(k)$
 \end_inset
 
@@ -1239,8 +1278,7 @@ We see that for free particle the group velocity is independent of time,
 
 \begin_layout Standard
 That the correspondence between classical and quantum mechanics in Eq.
- 2.24 survives for an arbitrary distribution of $a(k)$ is surprising and
- represents a special case of Ehrenfest's theorem.
+ 2.24 survives for an arbitrary distribution of $a(k)$ is surprising and represents a special case of Ehrenfest's theorem.
 \end_layout
 
 \end_body
