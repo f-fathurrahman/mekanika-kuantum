@@ -92,3 +92,11 @@ for i in 1:Npoints
 end
 plot(t_grid, control_signal)
 
+# Solve
+sol = solve_SE(sys, T, p_opt)
+pop0 = zeros(Float64, Npoints)
+pop1 = zeros(Float64, Npoints)
+for i in 1:Npoints
+    pop0[i] = real(sol(t_grid[i])[1,1])
+    pop1[i] = real(sol(t_grid[i])[2,2])
+end
