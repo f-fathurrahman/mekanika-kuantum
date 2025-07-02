@@ -3,6 +3,7 @@ wavepacket_python
 images_priv
 
 .ipynb_checkpoints
+*.jld2
 *.data
 OUT_*
 _minted
