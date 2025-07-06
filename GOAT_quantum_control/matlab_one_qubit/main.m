@@ -1,29 +1,24 @@
 % using struct self
-clc;
-clear all;
-%%
+clc; clear variables;
+
 format long 
 
 % Global variable self
-global self
-self.sx = [0 1;
-          1 0];
+global self;
 
-self.sy = [0 -1i;
-          1i 0];
-
-self.sz = [1  0;
-          0  -1];
-  
+% Pauli matrices
+self.sx = [0 1; 1 0];
+self.sy = [0 -1i; 1i 0];
+self.sz = [1  0; 0  -1];
 self.I  = eye(2);
 
+% Drift Hamiltonian
 self.Ho = 0.1 * self.sz;
 
-self.num_har = 6;
-self.num_c =1;
+self.num_har = 6; % ???
+self.num_c = 1;
 %  rng(0);
- 
- 
+
 self.r  = rand(self.num_har,self.num_c);
 self.w  = 0.1 ;
 
@@ -45,16 +40,15 @@ self.GradT = [];
 self.U0 = eye(2);
 self.UT = eye(2);
 
-
 self.A = 100*rand(size(self.r))-0.5;
 % self.w = 10*rand(size(self.r));
 % self.w = rand(size(self.r));
 % self.Bw = rand(size(self.r));
 
+% Final state?
 self.Uf = 1j* [0 1;
                1 0];
-                       
-                       
+
 % optimization variable dumping in                        
 self.iter = [];
 self.state = [];
@@ -65,20 +59,16 @@ self.X = (rand(self.num_har, self.num_c)-0.5);
 X = self.X(:);
 X  = cat(1, X, self.w);
 
-%
 
 U = eye(2);
 M0 = zeros(4 + (1 * 4 * self.num_c * self.num_har + 4), 1);
 M0(1:4) = U(:);
+
+% Test evolution
 % opt = odeset('RelTol',1e-9,'AbsTol',1e-9,'Stats','on');
 % [t,M] = ode45(@(t,M) Evolution(t,M, self.A , self.w), self.tspan, M0,opt);
 
 
-
-
-
-
-%%
 % options = optimset('PlotFcns',@optimplotfval, 'MaxIter', 50000,...
 %     'MaxFunEvals',50000,'Display','iter','OutputFcn',@outfun,...
 %     'Algorithm','trust-region','SpecifyObjectiveGradient',true);
@@ -98,15 +88,11 @@ options = optimoptions('fminunc',...
     'Algorithm', 'quasi-newton',...
     'HessUpdate','bfgs',...
     'PlotFcns',@optimplotfval...
-    );
-
-[x,fval,exitflag,output] = fminunc(@Cost,X,options);
-
+);
+[x, fval, exitflag, output] = fminunc(@Cost, X, options);
 
 % options = optimset('MaxIter', 5000,...
 %     'MaxFunEvals',10000,'OutputFcn',@outfun,'SpecifyObjectiveGradient',true);
 % options = optimoptions('fsolve','Display','iter','PlotFcn',@optimplotfirstorderopt,...
 %     'SpecifyObjectiveGradient',true, 'FunctionTolerance', 1e-9);
 % [x,fval,exitflag,output] = fsolve(@Cost,X,options);
-
-

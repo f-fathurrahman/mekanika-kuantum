@@ -1,3 +1,4 @@
+clear variables; close all;
 % using struct self
 global self
 self.sx = [0 1;
@@ -19,7 +20,7 @@ J  = 0.1;
 self.Ho = 0.1 * self.szz;
 
 self.num_har = 6;
-self.num_c =3;
+self.num_c = 3;
 rng(23);
 self.r  = rand(self.num_har,self.num_c);
 self.w  = 1 ;
