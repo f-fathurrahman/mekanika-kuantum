@@ -57,6 +57,7 @@ p4 = bloch_sphere_view(r, title="Y-Axis View", elevation=0, azimuth=90)
 # Display all views
 plot(p1, p2, p3, p4, layout=(2,2), size=(800,800))
 
+#=
 # Create rotation animation
 anim = @animate for azim in range(0, 360, length=36)
     bloch_sphere_view([1/√2, 1/√2, 0], 
@@ -64,5 +65,5 @@ anim = @animate for azim in range(0, 360, length=36)
                      azimuth=azim,
                      elevation=30)
 end
-
 gif(anim, "bloch_rotation.gif", fps=10)
+=#
