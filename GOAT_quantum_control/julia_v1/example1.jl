@@ -21,6 +21,7 @@ basis_ops = [σx] # The control basis operator
 N_basis_funcs = 1
 # The control ansatz is a gaussian envelope of a cosine wave at frequency ω
 Ω(p,t,i) = gaussian_coefficient(p,t,i,N_basis_funcs)*cos(ω*t)
+# amplitude, center, width
 
 # The derivative of the control ansatz
 ∂Ω(p,t,i,l) = ∂gaussian_coefficient(p,t,i,l,N_basis_funcs)*cos(ω*t)
@@ -49,14 +50,18 @@ GOAT_reduce_map = GOAT_infidelity_reduce_map
 
 
 # Define options for DifferentialEquations.jl (see DifferentialEquations.jl docs for info)
-ODE_options = (abstol = 1e-9, reltol= 1e-9, alg=Vern9())
+ODE_options = (abstol=1e-9, reltol=1e-9, alg=Vern9())
 
 # Define the optimizer options from Optim.jl (See Optim.jl docs for info)
 optim_alg = Optim.LBFGS(linesearch=LineSearches.BackTracking()) # A Back-Tracking linesearch
-optim_options = Optim.Options(g_tol=1e-12,
-                        iterations=10,
-                        store_trace=true,
-                        show_trace=true, extended_trace=false, allow_f_increases=false)
+optim_options = Optim.Options(
+    g_tol=1e-12,
+    iterations=100,
+    store_trace=true,
+    show_trace=true,
+    extended_trace=false,
+    allow_f_increases=false
+)
 
 p0 = [0.5, T/2, T/8] # The initial parameter guesses
 opt_param_inds = [1]
@@ -85,18 +90,32 @@ theme(:dark)
 t_grid = collect(0:0.01:T)
 control_signal = similar(t_grid)
 p_opt = copy(p0)
-p_opt[opt_param_inds] .= Optim.minimizer(res)[opt_param_inds]
+for (idx,v) in enumerate(opt_param_inds)
+    p_opt[v] = Optim.minimizer(res)[idx]
+end
 Npoints = length(t_grid)
 for i in 1:Npoints
     control_signal[i] = Ω(p_opt, t_grid[i], 1)
 end
-plot(t_grid, control_signal)
+fig_control = plot(t_grid, control_signal)
 
 # Solve
-sol = solve_SE(sys, T, p_opt)
+sol = solve_SE(sys, T, p_opt) # The solutions are unitary gates
+ψ0 = complex.([1.0, 0.0])
+ψ = copy(ψ0)
+U = zeros(ComplexF64, 2, 2)
 pop0 = zeros(Float64, Npoints)
 pop1 = zeros(Float64, Npoints)
+# Propagate using
 for i in 1:Npoints
-    pop0[i] = real(sol(t_grid[i])[1,1])
-    pop1[i] = real(sol(t_grid[i])[2,2])
+    t = t_grid[i]
+    U[:,:] = sol(t) # interpolate
+    ψ[:] = U * ψ
+    c2 = real(ψ' * ψ)
+    ψ[:] = ψ/sqrt(c2)
+    pop0[i] = abs2(ψ[1])
+    pop1[i] = abs2(ψ[2])
+    #println("t = $t ψ = $(ψ)")
 end
+fig_pop = plot(t_grid, pop0)
+plot!(fig_pop, t_grid, pop1)
