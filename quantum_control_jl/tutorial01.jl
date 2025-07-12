@@ -21,7 +21,7 @@ V = -μ₀₁ * [0 1; 1 0]
 
 # Define electric field
 t₀ = 25.0
-ωₗ = ω
+ωₗ = ω/2
 E₀ = 1.2
 ϕ = 0
 τ = 1.5
@@ -31,7 +31,7 @@ H = hamiltonian(H₀, (V, E))
 Ψ₀ = ComplexF64[1, 0] # State |0⟩
 Ψ₁ = ComplexF64[0, 1] # State |1⟩
 
-# Projectors
+# Projectors for observables
 P₀ = Ψ₀ * Ψ₀'
 P₁ = Ψ₁ * Ψ₁'
 
@@ -42,3 +42,4 @@ plot(t, abs.(E.(t)) / E_max, label="|E|")
 plot!(t, real.(output[1,:]), label="|0⟩")
 plot!(t, real.(output[2,:]), linestyle=:dash, label="|1⟩")
 plot!(; xlabel="Time", ylabel="Population")
+savefig("IMG_01.png")
