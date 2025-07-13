@@ -217,8 +217,8 @@ function init_prop(
     pwc=nothing,
     kwargs...
 )
-    println("Pass here 220 ini init_prop")
-    println("method = ", method)
+    #println("Pass here 220 ini init_prop")
+    #println("method = ", method)
     # convert `method` from keyword argument to positional argument:
     propagator = init_prop(
         state,
@@ -252,21 +252,18 @@ end
 
 # `method` as a symbol
 function init_prop(state, generator, tlist, method::Symbol; kwargs...)
-    println("Pass here 255")
     return init_prop(state, generator, tlist, Val(method); kwargs...)
 end
 
 
 # `method` as a Module (recommended usage)
 function init_prop(state, generator, tlist, method::Module; kwargs...)
-    println("Pass here 262")
     return init_prop(state, generator, tlist, Val(nameof(method)); kwargs...)
 end
 
 
 # Fallback
 function init_prop(state, generator, tlist, method; kwargs...)
-    println("Pass here init_prop 263")
     throw(ArgumentError("Unknown propagation `method`: $(method)"))
 end
 

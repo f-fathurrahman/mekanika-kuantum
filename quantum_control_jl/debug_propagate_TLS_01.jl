@@ -4,10 +4,10 @@ using MyQuantumPropagators: Cheby
 using MyQuantumPropagators.Storage
 using LinearAlgebra
 
-function debug_main()
+# We use Rabi cycling in a TLS as a test case, which allows to to compare
+# the propagation with the known analytic solution.
 
-    # We use Rabi cycling in a TLS as a test case, which allows to to compare
-    # the propagation with the known analytic solution.
+function debug_main()
 
     Ψ0 = ComplexF64[1, 0]
     Ĥ = ComplexF64[

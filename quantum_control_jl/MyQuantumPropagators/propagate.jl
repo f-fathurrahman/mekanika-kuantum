@@ -181,7 +181,7 @@ function propagate(
     atol = get(kwargs, :atol, 1e-14)  # for checks
     quiet = get(kwargs, :quiet, false)  # for checks
 
-    println("Pass here 184")
+    #println("Pass here 184")
 
     if check
         if !(tlist isa Vector{Float64})
@@ -225,10 +225,10 @@ function propagate(
             )
         end
     end
-    println("Pass here 228")
 
-    println("method = ", method)
-    println(typeof(method))
+    #println("Pass here 228")
+    #println("method = ", method)
+    #println(typeof(method))
 
     propagator = init_prop(state, generator, tlist; method, inplace, kwargs...)
     # Calling `init_prop` with `method` as a keyword argument instead of a
