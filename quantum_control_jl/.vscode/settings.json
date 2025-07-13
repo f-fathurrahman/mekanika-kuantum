@@ -1,10 +1,12 @@
 {
   "files.exclude": {
     "**/ORIG_*": true,
+    "TEMP_*/": true,
     "LOG_*": true,
     "*.zip": true,
     "*.pkl": true,
     "*.out": true,
+    ".ipynb_checkpoints": true,
   }
 }
 
