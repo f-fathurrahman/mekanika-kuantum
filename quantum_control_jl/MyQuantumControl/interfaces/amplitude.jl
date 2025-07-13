@@ -47,7 +47,7 @@ function check_amplitude(
 
     px = _message_prefix
     success =
-        QuantumPropagators.Interfaces.check_amplitude(ampl; tlist, quiet, _message_prefix)
+        MyQuantumPropagators.Interfaces.check_amplitude(ampl; tlist, quiet, _message_prefix)
     success || (return false)
 
     if for_gradient_optimization
