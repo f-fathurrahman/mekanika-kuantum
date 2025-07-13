@@ -162,6 +162,9 @@ optimize(problem, method::Val{:Mykrotov}) = optimize_krotov(problem)
 See [`optimize(problem; method=Krotov, kwargs...)`](@ref optimize(::Any, ::Val{:krotov})).
 """
 function optimize_krotov(problem)
+
+    @info "ENTER optimize_krotov"
+
     callback = get(problem.kwargs, :callback, (args...) -> nothing)
     if haskey(problem.kwargs, :update_hook) || haskey(problem.kwargs, :info_hook)
         msg = "The `update_hook` and `info_hook` arguments have been superseded by the `callback` argument"
@@ -233,6 +236,8 @@ function optimize_krotov(problem)
         popfirst!(Base.atexit_hooks)
     end
 
+    @info "EXIT optimize_krotov"
+
     return wrk.result
 
 end
@@ -248,6 +253,9 @@ end
 
 
 function krotov_initial_fw_prop!(ϵ⁽⁰⁾, ϕₖ, k, wrk)
+
+    @info "ENTER krotov_initial_fw_prop"
+
     for propagator in wrk.fw_propagators
         propagator.parameters = IdDict(zip(wrk.controls, ϵ⁽⁰⁾))
     end
@@ -281,6 +289,8 @@ _eval_mu(μ::AbstractMatrix, _...) = μ
 
 function krotov_iteration(wrk, ϵ⁽ⁱ⁾, ϵ⁽ⁱ⁺¹⁾)
 
+    #@info "ENTER krotov_iteration"
+
     tlist = wrk.result.tlist
     N_T = length(tlist) - 1
     N = length(wrk.trajectories)
@@ -298,6 +308,7 @@ function krotov_iteration(wrk, ϵ⁽ⁱ⁾, ϵ⁽ⁱ⁺¹⁾)
     # backward propagation
 
     Ψ = [propagator.state for propagator in wrk.fw_propagators]
+    @info "size(Ψ[1])=$(size(Ψ[1]))" # states, for qubit (2,) ComplexF64 vector
     if wrk.chi_takes_tau
         χ = chi(Ψ, wrk.trajectories; tau=wrk.result.tau_vals)
     else

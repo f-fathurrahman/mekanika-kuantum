@@ -232,7 +232,7 @@ function init_prop(
         pwc,
         kwargs...
     )
-    println("typeof propagator = ", typeof(propagator))
+    #println("typeof propagator = ", typeof(propagator))
 
     if piecewise ≡ true
         if !(propagator isa PiecewisePropagator)
