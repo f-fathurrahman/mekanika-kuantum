@@ -5,6 +5,7 @@ sx = 1/2 * np.mat([[0, 1],[ 1, 0]], dtype=complex)
 sy = 1/2 * np.mat([[0, -1j],[1j, 0]], dtype=complex)
 sz = 1/2 * np.mat([[1, 0],[0, -1]], dtype=complex)
 
+# Return Hamiltonian at time index j
 def hamiltonian(j):
     J = 4
     H = (j) * J * sz + sx
@@ -12,41 +13,43 @@ def hamiltonian(j):
 
 
 T = 2*np.pi       
-N = 20
-dt = T/N
+Ntimes = 20
+dt = T/Ntimes
 
-I = 500
-fidelity = np.zeros(I+1)
+Niters = 500
+fidelity = np.zeros(Niters + 1)
 
-observable = np.mat(np.zeros(shape=(2,2), dtype=complex))
+# This is a projector to |1>
+observable = np.mat( np.zeros(shape=(2,2), dtype=complex) )
 observable[-1, -1] = 1
 
-psi = np.mat(np.zeros(shape=(2, N+1), dtype=complex))
-psi[0,0] = 1   
-pseudo = np.mat(np.zeros(shape=(2, N+1), dtype=complex))    # 
+psi = np.mat(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # forward trajectory
+psi[0,0] = 1
+pseudo = np.mat(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # backward trajectory
 
+seq = np.random.rand(Ntimes) # control
+seq_f = np.zeros(Ntimes)
+seq_f[:] = seq[:] # copy
 
-seq = np.random.rand(N)
-seq_f = seq
-
-for i in range(N):
+# Propagate
+for i in range(Ntimes):
     psi[:,i+1] = linalg.expm(-(1j) * hamiltonian(seq[i]) * dt).dot(psi[:,i])
-fidelity[0]=(np.absolute(psi[-1,-1]))**2
+fidelity[0] = (np.absolute(psi[-1,-1]))**2
 pseudo[:,-1] = observable.dot(psi[:,-1])
-dj = 0.01    
+dj = 0.01  # variation in control sequence? for computing dH
 
-
-for i in range(I):
-    for j in reversed(range(N)):
+for i in range(Niters):
+    for j in reversed(range(Ntimes)):
         pseudo[:,j] = linalg.expm((1j) * hamiltonian(seq[j]) * dt).dot(pseudo[:,j+1])
-    for k in range(N):
+    for k in range(Ntimes):
         dH = (hamiltonian(seq[k]+dj) - hamiltonian(seq[k]-dj)) / (2*dj)
-        seq_f[k] = seq[k] + (pseudo[:,k].conj().T.dot(dH.dot(psi[:,k]))).imag[0,0]
+        # Update sequence for time k
+        seq_f[k] = seq[k] + ( pseudo[:,k].conj().T.dot(dH.dot(psi[:,k])) ).imag[0,0]
+        # forward trajectory
         psi[:,k+1] = linalg.expm(-(1j) * hamiltonian(seq_f[k]) * dt).dot(psi[:,k])
-        seq = seq_f
+        seq[:] = seq_f[:]
     fidelity[i+1] += (np.absolute(psi[-1,-1]))**2
     pseudo[:,-1] = observable.dot(psi[:,-1])
 
-
-print('final_fidelity=',fidelity[-1])
+print('final_fidelity = ', fidelity[-1])
 
