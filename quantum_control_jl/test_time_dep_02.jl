@@ -8,13 +8,13 @@ includet("time_dependent_ham.jl")
 function control_function(t)
     t0 = 25.0
     ωl = 10.0
-    E0 = 1.2
+    E0 = 0.9
     ϕ = 0
     τ = 1.5
     return E0 * cos(ωl * (t - t0) + ϕ) * exp(-(t - t0)^2 / (2τ^2));
 end
 
-function main_time_dep_01()
+function main_time_dep_02()
 
     ω = 10.0
     μ01 = 1.0
@@ -27,10 +27,11 @@ function main_time_dep_01()
         1  0
     ]
 
-    Ham = TimeDepHamiltonian(H0, [H1], [control_function])
-
     tlist = collect(range(0, 50.0, length=10_000))
-    pulse = control_function.(tlist)
+    ampl1 = control_function.(tlist)
+
+    Ham = DiscreteTimeDepHamiltonian(H0, [H1], [ampl1])
+
     
     ket0 = ComplexF64[1.0, 0.0]
     ket1 = ComplexF64[0.0, 1.0]
@@ -43,7 +44,7 @@ function main_time_dep_01()
     Ht = zeros(ComplexF64, 2, 2)
     for i in 1:Ntimes-1
         Δt = tlist[i+1] - tlist[i]
-        evaluate_ham!(Ham, tlist[i], Ht)
+        evaluate_ham!(Ham, i, Ht)
         psi_t[:,i+1] = exp(-im * Ht * Δt) * psi_t[:,i]
     end
 
