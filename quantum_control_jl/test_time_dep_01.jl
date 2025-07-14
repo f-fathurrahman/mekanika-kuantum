@@ -1,13 +1,5 @@
 using Infiltrator
 
-using MyQuantumControl
-using MyQuantumPropagators: propagate
-using MyQuantumPropagators: ExpProp
-
-using MyQuantumControl.Controls: discretize
-using MyQuantumControl.Functionals: J_T_ss
-using MyQuantumPropagators.Controls: get_controls, substitute
-
 using Plots, PlotThemes
 theme(:dark)
 
@@ -57,52 +49,33 @@ function evaluate_ham!(
     return
 end
 
+function control_function(t)
+    t0 = 25.0
+    ωl = 10.0
+    E0 = 1.2
+    ϕ = 0
+    τ = 1.5
+    return E0 * cos(ωl * (t - t0) + ϕ) * exp(-(t - t0)^2 / (2τ^2));
+end
+
+function main_time_dep_01()
 
 
-
-function ham_and_states(; omega=1.0, eps0=(t -> 1.0))
-    H₀ = -0.5 * omega * [
+    ω = 10.0
+    μ01 = 1.0
+    H0 = -0.5 * ω * ComplexF64[
         1   0
         0  -1
     ]
-    H₁ = Float64[
-        0  1
-        1  0
-    ]
-    Ψ₀ = ComplexF64[1, 0] # State |0⟩
-    Ψ₁ = ComplexF64[0, 1] # State |1⟩
-    H = hamiltonian(H₀, (H₁, eps0))
-    return H, Ψ₀, Ψ₁
-end
-
-function plot_pulse(pulse, tlist)
-    fig = plot(; xlabel="time", ylabel="pulse amplitude")
-    plot!(fig, tlist, discretize(pulse, tlist); label="")
-    return fig
-end
-
-
-function debug_krotov_02()
-
-    """Shape function for the field update"""
-    S(t) = MyQuantumControl.Shapes.flattop(t; T=10.0, t_rise=0.5, func=:sinsq);
-
-    """Guess Amplitude (unshaped)"""
-    E(t; A=0.1, σ=2) = A * exp(-(t-5)^2 / (2 * σ^2)) * cos(3t);
-
-    ω = 1.0
-    H₀ = -0.5 * ω * ComplexF64[
-        1   0
-        0  -1
-    ]
-    H₁ = ComplexF64[
+    H1 = -μ01 * ComplexF64[
         0  1
         1  0
     ]
 
-    Ham = TimeDependentHamiltonian(H₀, [H₁], [t->S(t)*E(t)])
+    Ham = TimeDependentHamiltonian(H0, [H1], [control_function])
 
-    tlist = collect(range(0, 1.5π, length=101)) # 3π/2 pulse
+    tlist = collect(range(0, 50.0, length=10_000))
+    pulse = control_function.(tlist)
     
     ket0 = ComplexF64[1.0, 0.0]
     ket1 = ComplexF64[0.0, 1.0]
@@ -127,6 +100,6 @@ function debug_krotov_02()
         pop1[i] = ψ' * (P1 * ψ)
     end
 
-    @infiltrate
+    @exfiltrate
 
 end
