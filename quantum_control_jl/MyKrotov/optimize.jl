@@ -308,7 +308,7 @@ function krotov_iteration(wrk, ϵ⁽ⁱ⁾, ϵ⁽ⁱ⁺¹⁾)
     # backward propagation
 
     Ψ = [propagator.state for propagator in wrk.fw_propagators]
-    @info "size(Ψ[1])=$(size(Ψ[1]))" # states, for qubit (2,) ComplexF64 vector
+    #@info "size(Ψ[1])=$(size(Ψ[1]))" # states, for qubit (2,) ComplexF64 vector
     if wrk.chi_takes_tau
         χ = chi(Ψ, wrk.trajectories; tau=wrk.result.tau_vals)
     else

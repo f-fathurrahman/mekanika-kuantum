@@ -92,6 +92,8 @@ function init_prop(
     convert_operator=_exp_prop_convert_operator(generator),
     _...
 )
+    @info "initializing exp_propagator: backward=$(backward)"
+
     if !isconcretetype(convert_state)
         throw(ArgumentError("convert_state $convert_state must be a concrete type"))
         # this is because convert_state is the `T` for `ExpPropWrk{T}`, and we
@@ -142,6 +144,9 @@ init_prop(state, generator, tlist, method::Val{:expprop}; kwargs...) =
 
 
 function prop_step!(propagator::ExpPropagator)
+
+    #@info "Pass here in prop_step! of ExpPropagator"
+
     @timeit_debug propagator.timing_data "prop_step!" begin
         H = propagator.genop
         n = propagator.n

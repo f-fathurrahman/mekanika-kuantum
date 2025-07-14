@@ -82,8 +82,21 @@ function optimize(
     kwargs...
 )
 
+    @info "ENTER optimize:"
+    @info "kwargs = "
+    display(kwargs); println()
+    println("repr kwargs = ")
+    println(repr(kwargs))
+
     temp_kwargs = copy(problem.kwargs)
+
+    @info "temp_kwargs (same as problem.kwargs) = "
+    display(temp_kwargs)
+
     merge!(temp_kwargs, kwargs)
+
+    @info "temp_kwargs (after merged) = "
+    display(temp_kwargs); println()
 
     callbacks = Any[]
     if !isnothing(callback)
@@ -132,6 +145,10 @@ function optimize(
             end
         end
     end
+
+    @info "Will call optimize with method=$(method)"
+    @info "temp_problem = "
+    display(temp_problem); println()
 
     return optimize(temp_problem, method)
 

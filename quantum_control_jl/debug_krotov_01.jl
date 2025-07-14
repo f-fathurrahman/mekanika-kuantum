@@ -8,7 +8,8 @@ using MyQuantumControl.Controls: discretize
 using MyQuantumControl.Functionals: J_T_ss
 using MyQuantumPropagators.Controls: get_controls, substitute
 
-using MyKrotov
+import MyKrotov
+using MyKrotov: KrotovWrk, krotov_initial_fw_prop!, update_result!, finalize_result!, krotov_iteration
 
 using Plots, PlotThemes
 theme(:dark)
@@ -41,6 +42,12 @@ function plot_pulse(pulse, tlist)
     plot!(fig, tlist, discretize(pulse, tlist); label="")
     return fig
 end
+
+
+
+includet("my_krotov_optimize.jl")
+
+
 
 function debug_krotov_01()
 
@@ -80,6 +87,10 @@ function debug_krotov_01()
     #res = optimize(problem; method=MyKrotov, lambda_a=25, update_shape=S)
 
     temp_kwargs = copy(problem.kwargs)
+    kwargs = Dict{Symbol, Any}(
+        :lambda_a => 25,
+        :update_shape => S
+    )
     merge!(temp_kwargs, kwargs)
 
     temp_problem = ControlProblem(;
@@ -87,7 +98,8 @@ function debug_krotov_01()
         tlist=problem.tlist,
         temp_kwargs...
     )
-    res = MyKrotov.optimize_krotov(temp_problem)
+    res = my_optimize_krotov(temp_problem)
+    
     @exfiltrate
 
     #=
