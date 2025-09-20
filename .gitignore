@@ -2,6 +2,8 @@ wavepacket_matlab
 wavepacket_python
 images_priv
 
+
+__pycache__
 .ipynb_checkpoints
 *.jld2
 *.data
