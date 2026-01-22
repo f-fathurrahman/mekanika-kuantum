@@ -10,7 +10,7 @@ function [A_krylov, krylov_basis] = generateKrylovSubspace(A, v, dim_krylov)
   dim_full = size(v,1);
   A_krylov = (1.0+0.0i)*zeros(dim_krylov, dim_krylov);
   krylov_basis = (1.0+0.0i)*zeros(dim_full,dim_krylov);
-    
+
   % first vector is normalised starting vector
   krylov_basis(:,1) = (1.0/norm(v)) *  v;
     

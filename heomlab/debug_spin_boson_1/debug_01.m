@@ -105,15 +105,7 @@ n_baths = numel(baths);
 
 lambda_Ds = [];
 omega_Ds = [];
-lambda_OBOs = [];
-Omega_OBOs = [];
-gamma_OBOs = [];
-lambda_UBOs = [];
-Omega_UBOs = [];
-gamma_UBOs = [];
-lambda_Ds_pade = [];
-omega_Ds_pade = [];
-pade_approximants = [];
+
 N_pade = [];
 Vs = {};
 nus_custom = {};
@@ -137,26 +129,12 @@ heom_bath_info.n_baths = n_baths;
 heom_bath_info.Vs = Vs;
 heom_bath_info.lambda_Ds = lambda_Ds;
 heom_bath_info.omega_Ds = omega_Ds;
-heom_bath_info.lambda_OBOs = lambda_OBOs;
-heom_bath_info.Omega_OBOs = Omega_OBOs;
-heom_bath_info.gamma_OBOs = gamma_OBOs;
-heom_bath_info.lambda_UBOs = lambda_UBOs;
-heom_bath_info.Omega_UBOs = Omega_UBOs;
-heom_bath_info.gamma_UBOs = gamma_UBOs;
 heom_bath_info.beta = full_system.beta;
-heom_bath_info.lambda_Ds_pade = lambda_Ds_pade;
-heom_bath_info.omega_Ds_pade = omega_Ds_pade;
-heom_bath_info.N_pade = N_pade;
-heom_bath_info.pade_approximants = pade_approximants;
-heom_bath_info.nus_custom = nus_custom;
-heom_bath_info.cs_custom = cs_custom;
-heom_bath_info.cbars_custom = cbars_custom;
-heom_bath_info.nus_trunc_custom = nus_trunc_custom;
-heom_bath_info.cs_trunc_custom = cs_trunc_custom;
-heom_bath_info.cbars_trunc_custom = cbars_trunc_custom;
 
 fprintf('\n</div> EXIT getBathInformation\n');
 
+disp('heom_bath_info:');
+disp(heom_bath_info);
 
 
 fprintf('\n<div> ENTER constructHEOMGenerator\n');
@@ -201,21 +179,6 @@ mode_info.n_debye = n_debye;
 lambdas = [lambdas, reshape(repmat(heom_bath_info.lambda_Ds,[M+1,1]),[1,n_debye])];
 
 
-% No need for OBO for in this case
-mode_info.n_obo = 0;
-% No need for UBO for in this case
-mode_info.n_ubo = 0;
-% No need for Debye Pade
-mode_info.n_debye_pade = 0;
-mode_info.N_pade = [];
-cs_array_debye_pade = [];
-nus_array_debye_pade = [];
-% No need for nu_custom
-mode_info.n_custom_baths = 0;
-mode_info.n_custom_modes = [];
-
-
-
 % This is the case of heom_truncation_info.truncation_method == "depth cut-off")
 % construct the hierarchy structure with depth (L) based truncation
 [ado_indices,ado_gammas,lower_indices,upper_indices, ...
@@ -257,9 +220,6 @@ V = heom_bath_info.Vs;
 beta = heom_bath_info.beta;
 n_baths = length(V);
 n_debye_baths = numel(heom_bath_info.lambda_Ds);
-n_OBO_baths = numel(heom_bath_info.lambda_OBOs);
-n_UBO_baths = numel(heom_bath_info.lambda_UBOs);
-n_debye_pade_baths = numel(heom_bath_info.lambda_Ds_pade);
 n_couplings = size(lower_indices,1);
 
 fprintf('N_ado = %d, M = %d\n',[n_ados,M]);
@@ -424,10 +384,44 @@ integrator = heom_dynamics.integrator;
 %ylabels = {'\langle\sigma_x(\itt\rm)\rangle','\langle\sigma_y(\itt\rm)\rangle','\langle\sigma_z(\itt\rm)\rangle'};
 %figure
 %for i = 1:3
-%  subplot(3,1,i)
-%  plot(t,O_t(i,:))
+%  subplot(3, 1, i)
+%  plot(t, O_t(i,:))
 %  xlabel('\itt\rm')
 %  ylabel(ylabels{i})
 %end
+
+%whos;
+
+disp('<div> ENTER ado_indices');
+disp(ado_indices)
+disp('</div> EXIT ado_indices');
+
+disp('<div> ENTER full_system');
+disp(full_system)
+disp('</div> EXIT full_system');
+
+disp('<div> ENTER heom_bath_info');
+disp(heom_bath_info)
+disp('</div> EXIT heom_bath_info');
+
+disp('<div> ENTER heom_dynamics');
+disp(heom_dynamics)
+disp('</div> EXIT heom_dynamics');
+
+disp('<div> ENTER heom_structure');
+disp(heom_structure)
+disp('</div> EXIT heom_structure');
+
+disp('<div> ENTER heom_truncation_info');
+disp(heom_truncation_info)
+disp('</div> EXIT heom_truncation_info');
+
+disp('<div> ENTER integrator');
+disp(integrator)
+disp('</div> EXIT integrator');
+
+disp('<div> ENTER mode_info');
+disp(mode_info)
+disp('</div> EXIT mode_info');
 
 diary off;
