@@ -1,5 +1,15 @@
 clear variables; close all;
 
+file_diary = 'LOG_debug_01.html';
+% Delete, because we cannot overwrite (?)
+%if exist(file_diary, 'file')
+%  delete(file_diary);
+%end
+% The above doesn't work
+file_id = fopen(file_diary, 'w');
+fclose(file_id);
+diary(file_diary);
+
 % A test script for the spin boson model
 % In this example the dynamics for a spin boson model with a Debye bath are
 % calculated
@@ -87,7 +97,7 @@ heom_dynamics.rho_0_sys = rho_0_sys;
 % ffr: there are other variables that should be returned but are discarded?
 
 % getBathInfomation
-fprintf('\n---- ENTER getBathInformation ----\n');
+fprintf('\n<div> ENTER getBathInformation\n');
 
 % ffr: why also return lambda_Ds, etc ?
 baths = full_system.baths;
@@ -114,7 +124,7 @@ nus_trunc_custom = {};
 cbars_trunc_custom = {};
 
 for i = 1:n_baths
-  fprintf('Pass here 119\n')
+  fprintf('Pass here 119\n');
   if (baths{i}.spectral_density == "debye")
     lambda_Ds = [lambda_Ds,baths{i}.lambda_D];
     omega_Ds = [omega_Ds,baths{i}.omega_D];
@@ -145,11 +155,11 @@ heom_bath_info.nus_trunc_custom = nus_trunc_custom;
 heom_bath_info.cs_trunc_custom = cs_trunc_custom;
 heom_bath_info.cbars_trunc_custom = cbars_trunc_custom;
 
-fprintf('\n---- EXIT getBathInformation ----\n');
+fprintf('\n</div> EXIT getBathInformation\n');
 
 
 
-fprintf('\n---- ENTER constructHEOMGenerator ----\n');
+fprintf('\n<div> ENTER constructHEOMGenerator\n');
 
 % construct the HEOM dynamics genrator as a sparse matrix
 %[L_heom, ado_indices] = constructHEOMGenerator(full_system.H_sys, heom_bath_info, ...
@@ -196,7 +206,6 @@ mode_info.n_obo = 0;
 % No need for UBO for in this case
 mode_info.n_ubo = 0;
 % No need for Debye Pade
-n_debye_pade_baths = 0;
 mode_info.n_debye_pade = 0;
 mode_info.N_pade = [];
 cs_array_debye_pade = [];
@@ -377,7 +386,7 @@ for r = 1:n_term_ados
   end
 end
 
-fprintf('\n---- EXIT constructHEOMGenerator ----')
+fprintf('\n</div> EXIT constructHEOMGenerator\n');
 
 % Output: 
 % L_heom <- L_heom
@@ -392,7 +401,7 @@ d_liou = d_hilb * d_hilb;
 % construct the rho_0 for the full hierarchy
 rho_0_heom = zeros([d_heom,1]);
 rho_0_heom(1:d_liou) = convertToLiouvilleVector(heom_dynamics.rho_0_sys);
-if isfield(heom_dynamics,"rho_0_heom")
+if isfield(heom_dynamics, "rho_0_heom")
   rho_0_heom = heom_dynamics.rho_0_heom;
 end
 
@@ -404,7 +413,7 @@ for n = 1:n_obs
 end
 
 integrator = heom_dynamics.integrator;
-[O_t,t,rho_final_heom] = runDynamicsSIADensityOperator( ...
+[O_t, t, rho_final_heom] = runDynamicsSIADensityOperator( ...
   rho_0_heom,L_heom,...
   integrator.n_steps, integrator.dt, O, integrator.krylov_dim, ...
   integrator.krylov_tol);
@@ -420,3 +429,5 @@ integrator = heom_dynamics.integrator;
 %  xlabel('\itt\rm')
 %  ylabel(ylabels{i})
 %end
+
+diary off;
