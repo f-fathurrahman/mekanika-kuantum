@@ -11,20 +11,19 @@ global OC;
 %
 % Assumption: the inter-dependence of H and U/L updates is taken care of in 'update_timeslot_controls'
 
-
 U_recompute_now = OC.timeSlots.currPoint.U_needed_now & OC.timeSlots.currPoint.U_is_stale;
 L_recompute_now = OC.timeSlots.currPoint.L_needed_now & OC.timeSlots.currPoint.L_is_stale;
 
 % To recompute U, you need to start at a cell that is fully recomputed.
 for t=(OC.timeSlots.nTimeSlots+1):(-1):2
-    if U_recompute_now(t) && OC.timeSlots.currPoint.U_is_stale(t-1)
-        U_recompute_now(t-1) = true;
-    end
+  if U_recompute_now(t) && OC.timeSlots.currPoint.U_is_stale(t-1)
+    U_recompute_now(t-1) = true;
+  end
 end
 for t=1:(OC.timeSlots.nTimeSlots-1)
-    if L_recompute_now(t) && OC.timeSlots.currPoint.L_is_stale(t+1)
-        L_recompute_now(t+1) = true;
-    end
+  if L_recompute_now(t) && OC.timeSlots.currPoint.L_is_stale(t+1)
+    L_recompute_now(t+1) = true;
+  end
 end
 
 % Now that we know which Us & Ls we need to recompute, we can figure out which Ps and Hs must be up-to-date
@@ -34,31 +33,31 @@ H_recompute_now = (P_recompute_now | OC.timeSlots.currPoint.H_needed_now) & OC.t
 % Compute the Hamiltonians
 h_idx = find(H_recompute_now);
 for t=h_idx
-    H = OC.config.hamDrift;
-    for ctrl = 1:length(OC.config.hamControl)
-        H = H + OC.timeSlots.currPoint.controls(t,ctrl) * OC.config.hamControl{ctrl};
-    end
-    OC.timeSlots.currPoint.H{t} = H;
+  H = OC.config.hamDrift;
+  for ctrl = 1:length(OC.config.hamControl)
+    H = H + OC.timeSlots.currPoint.controls(t,ctrl) * OC.config.hamControl{ctrl};
+  end
+  OC.timeSlots.currPoint.H{t} = H;
 end
 
 % Compute the exp(H) and any other per-H computation which may be needed for the gradient function
 p_idx = find(P_recompute_now);
 for t=p_idx
-    OC.timeSlots.calcPfromHfunc(t); % Compute the Ps - a single piece of propagator
-    % Note: calcPfromHfunc may also compute other values which will be needed for gradient calculations
-    %       These should be stored in OC.timeSlots.currPoint Their up-to-date-ness is identical to that of P
+  OC.timeSlots.calcPfromHfunc(t); % Compute the Ps - a single piece of propagator
+  % Note: calcPfromHfunc may also compute other values which will be needed for gradient calculations
+  %       These should be stored in OC.timeSlots.currPoint Their up-to-date-ness is identical to that of P
 end
 
 % Compute the Us - forward propagation (we never recompute U{1})
 u_idx = find (U_recompute_now);
 for t=u_idx
-    OC.timeSlots.currPoint.U{t} = OC.timeSlots.currPoint.P{t-1} * OC.timeSlots.currPoint.U{t-1};
+  OC.timeSlots.currPoint.U{t} = OC.timeSlots.currPoint.P{t-1} * OC.timeSlots.currPoint.U{t-1};
 end
 
 % Compute the Ls - backward propagation
-el_idx = fliplr(find (L_recompute_now));
-for t=el_idx
-    OC.timeSlots.currPoint.L{t} = OC.timeSlots.currPoint.L{t+1} * OC.timeSlots.currPoint.P{t};
+el_idx = fliplr(find(L_recompute_now));
+for t = el_idx
+  OC.timeSlots.currPoint.L{t} = OC.timeSlots.currPoint.L{t+1} * OC.timeSlots.currPoint.P{t};
 end
 
 % Mark what has been actually computed

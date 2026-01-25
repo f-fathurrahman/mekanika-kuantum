@@ -1,10 +1,12 @@
-function intialize_timeslot_controls (control_values)
+function initialize_timeslot_controls(control_values)
 global OC;
+
+disp('<div> ENTER initialize_timeslot_controls');
 
 OC.config.numControls = length(OC.config.hamControl);
 
 if ~isfield(OC.timeSlots,'tau') || isempty(OC.timeSlots.tau) || any(isnan(OC.timeSlots.tau))
-    OC.timeSlots.tau = OC.config.totalTime/OC.timeSlots.nTimeSlots * ones(1,OC.timeSlots.nTimeSlots);
+  OC.timeSlots.tau = OC.config.totalTime/OC.timeSlots.nTimeSlots * ones(1,OC.timeSlots.nTimeSlots);
 end
 
 OC.timeSlots.currPoint = struct();
@@ -40,3 +42,6 @@ OC.timeSlots.currPoint.curr_Phi0_val_stale = true;
 OC.timeSlots.currPoint.curr_Phi0_val = NaN;
 
 update_timeslot_controls(control_values);
+
+disp('</div> EXIT initialize_timeslot_controls');
+

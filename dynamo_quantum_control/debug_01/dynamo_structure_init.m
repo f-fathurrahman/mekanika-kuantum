@@ -1,31 +1,13 @@
 function dynamo_structure_init(num_spins)
 
 global OC;
-if numel(OC)==0
-    disp (' ');
-    disp ('DYNAMO - Quantum Dynamic Optimization Package v1.0');
-    disp (' ');
-    disp (' ');
-    disp ('(c) Shai Machnes 2010, Institute of Theoretical Physics, Ulm University, Germany');
-    disp ('email: shai.machnes at uni-ulm.de');
-    disp (' ');
-    disp ('All computer programs/code/scripts are released under the terms of the GNU Lesser General Public License 3.0 and Creative-Commons Attribution Share-Alike (see "LICENSE.txt" for details).');
-    disp ('  ');
-    disp ('If you use DYNAMO in your research, please add an attribution in the form of the following reference: S. Machnes et al, arXiv 1011.4874');
-    disp (' ');
-    disp ('For the latest version of this software, guides and information, visit http://www.qlib.info');
-    disp ('  ');
-    disp ('DYNAMO initialized successfully.');
-    disp ('  ');    
-    disp ('  ');
-    drawnow;
-end
+
+disp('<div> ENTER dynamo_structure_init');
 
 OC = struct();
 
-
-OC.config.uInitial = NaN(2 ^ num_spins);
-OC.config.uFinal = NaN(2 ^ num_spins);
+OC.config.uInitial = NaN(2^num_spins);
+OC.config.uFinal = NaN(2^num_spins);
 
 OC.config.numControls = NaN;
 
@@ -62,4 +44,7 @@ OC.config.hamControl = {NaN(2^num_spins), NaN(2^num_spins)};
 OC.config.normFunc = @PSU_norm;
 OC.config.gradientNormFunc = @gradient_PSU_norm;
 
+disp(OC.config.hamDrift);
+disp(OC.config.hamControl);
 
+disp('</div> EXIT dynamo_structure_init');

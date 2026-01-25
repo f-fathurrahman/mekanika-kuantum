@@ -58,13 +58,16 @@ OC.config.controlsInitialScaling = 1;
 initial_controls = OC.config.controlsInitialScaling * ( ...
     rand(OC.timeSlots.nTimeSlots, length(OC.config.hamControl)) - 0.5);
 
-intialize_timeslot_controls(initial_controls);
+initialize_timeslot_controls(initial_controls);
 
 % Which time slots do you want to modify
 controls_mask = true(OC.timeSlots.nTimeSlots, OC.config.numControls);
 
 controls_mask(1:100) = false;
-initial_controls(1:100) = 0.0;
+initial_controls(1:100) = 1.0;
+
+controls_mask(400:500) = false;
+initial_controls(400:500) = 2.0;
 
 %controls_mask = false(OC.timeSlots.nTimeSlots, OC.config.numControls);
 %controls_mask(200:300) = true;
@@ -96,9 +99,9 @@ OC.config.BFGS = struct('fminopt', struct('Display', 'off'));
 
 % Here we will do the minimization
 % Using GRAPE
-%termination_reason = BFGS_search_function(controls_mask, termination_conditions);
+termination_reason = BFGS_search_function(controls_mask, termination_conditions);
 % Or Krotov
-termination_reason = Krotov_search_function(controls_mask, termination_conditions);
+%termination_reason = Krotov_search_function(controls_mask, termination_conditions);
 
 fprintf('Fidelity reached: 1 - %g\n', 1-get_current_value())
 fprintf('Wall time: %g\n', (now()-wall0)*(24*60*60))

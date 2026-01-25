@@ -1,4 +1,4 @@
-function termination_reason = BFGS_search_function (subspace_mask, termination_conditions)
+function termination_reason = BFGS_search_function(subspace_mask, termination_conditions)
 global OC;
 
 wall0 = now();
@@ -77,8 +77,8 @@ problem.solver = 'fminunc';
 % try to minimise objective function to -1
 [uFinal, costFinal, exitflag, output] = fminunc(problem);
 
-update_timeslot_controls(uFinal, subspace_mask); % It may be different than the last point evaluated, and there is no problem-space 
-
+% It may be different than the last point evaluated, and there is no problem-space 
+update_timeslot_controls(uFinal, subspace_mask);
 end % function
 
 
