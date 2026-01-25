@@ -1,9 +1,9 @@
 import numpy as np
 from scipy import linalg
 
-sx = 1/2 * np.mat([[0, 1],[ 1, 0]], dtype=complex)
-sy = 1/2 * np.mat([[0, -1j],[1j, 0]], dtype=complex)
-sz = 1/2 * np.mat([[1, 0],[0, -1]], dtype=complex)
+sx = 1/2 * np.matrix([[0, 1],[ 1, 0]], dtype=complex)
+sy = 1/2 * np.matrix([[0, -1j],[1j, 0]], dtype=complex)
+sz = 1/2 * np.matrix([[1, 0],[0, -1]], dtype=complex)
 
 # Return Hamiltonian at time index j
 def hamiltonian(j):
@@ -13,19 +13,19 @@ def hamiltonian(j):
 
 
 T = 2*np.pi       
-Ntimes = 20
+Ntimes = 200
 dt = T/Ntimes
 
 Niters = 500
 fidelity = np.zeros(Niters + 1)
 
 # This is a projector to |1>
-observable = np.mat( np.zeros(shape=(2,2), dtype=complex) )
+observable = np.matrix( np.zeros(shape=(2,2), dtype=complex) )
 observable[-1, -1] = 1
 
-psi = np.mat(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # forward trajectory
+psi = np.matrix(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # forward trajectory
 psi[0,0] = 1
-pseudo = np.mat(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # backward trajectory
+pseudo = np.matrix(np.zeros(shape=(2, Ntimes+1), dtype=complex)) # backward trajectory
 
 seq = np.random.rand(Ntimes) # control
 seq_f = np.zeros(Ntimes)
@@ -49,6 +49,7 @@ for i in range(Niters):
         psi[:,k+1] = linalg.expm(-(1j) * hamiltonian(seq_f[k]) * dt).dot(psi[:,k])
         seq[:] = seq_f[:]
     fidelity[i+1] += (np.absolute(psi[-1,-1]))**2
+    print(f"i={i}, fidelity = {fidelity[i+1]}")
     pseudo[:,-1] = observable.dot(psi[:,-1])
 
 print('final_fidelity = ', fidelity[-1])

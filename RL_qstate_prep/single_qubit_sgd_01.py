@@ -5,12 +5,12 @@ def cost_function(seq):
     N = len(seq)
     dt = 2*np.pi/N  
     #
-    sx = 1/2 * np.mat([
+    sx = 1/2 * np.matrix([
         [0, 1],
         [1, 0]
     ], dtype=complex)
     #
-    sz = 1/2 * np.mat([
+    sz = 1/2 * np.matrix([
         [1,0],
         [0,-1]
     ], dtype=complex)
@@ -22,10 +22,10 @@ def cost_function(seq):
         H = ii * J * sz + 1*sx # Hamiltonian
         U = expm(-1j * H * dt) * U  # Evolution operator
     #
-    p0 = np.mat([[1],[0]], dtype=complex) # initial state
+    p0 = np.matrix([[1],[0]], dtype=complex) # initial state
     pt = U * p0 # final state
     #
-    target = np.mat([[0], [1]], dtype=complex)                             # south pole
+    target = np.matrix([[0], [1]], dtype=complex) # south pole
     #
     err = 1 - (np.abs(pt.H * target)**2).item(0).real # infidelity (to make it as small as possible)
     return err
