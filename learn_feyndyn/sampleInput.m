@@ -1,6 +1,6 @@
 clear all; close all;
 
-% Press F5. The real and imaginary parts of <i|rho|j> will be plotted as a function of time 
+% Press F5. The real and imaginary parts of <i|rho|j> will be plotted as a function of time
 %  for the hamiltonian presented in Comp. Phys. Comm. Volume 184, Issue 12, Pg. 2828-2833
 
 % 1. fundamental constants
@@ -41,14 +41,14 @@ totalT=10/1e12;               % total time for the simulation, in seconds
 dt=33/totalT;                 % size of time step (delta t)
 finalPoint=round(dt*totalT);  % number of timesteps in total
 allPointsORjustFinalPoint='allPoints'; % do you just want the density matrix at time=totalT ? or do you want it at every point until then
-cpuORgpu='cpu'; 
+cpuORgpu='cpu';
 
 % 8. build input array that represents the densitry matrix (flattened to a column vector) as a function of time (where the columns represent the time steps)
 rho=zeros(numel(H),finalPoint+1);
 rho(:,1)=reshape(rhoInitial.',[],1); % I'm not sure about the transpose, since I'm not sure about labeling of the states in the column vector for the purposes of the final sum function.
 
 % 9. run the program and plot only <0|rho|0> and <1|rho|1> as a function of time
-wholeDensityMatrixOrJustDiagonals='justDiagonals';
+wholeDensityMatrixOrJustDiagonals = 'justDiagonals';
 
 [rho_onlyDiagonals,elapsedTime_onlyDiagonals]=FeynDyn(Nbaths,finalPoint,deltaKmax,totalT,rho,H,systemCouplingMatrix,w,dw,J,temperature,wholeDensityMatrixOrJustDiagonals,allPointsORjustFinalPoint,cpuORgpu);
 
