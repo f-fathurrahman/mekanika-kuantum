@@ -253,7 +253,13 @@ for j = 1:n_debye_baths
     sum(cs_array_debye(j,2:end)./nus_array_debye(j,2:end));
   Xi = Xi - R_j * V_comm{j}*V_comm{j};
 end
+disp('Before kron id_ados and Xi');
+disp('size id_ados = '); disp(size(id_ados));
+disp('size Xi = '); disp(size(Xi));
 Xi = kron(id_ados,Xi);
+disp('After kron id_ados and Xi');
+disp('size id_ados = '); disp(size(id_ados));
+disp('size Xi = '); disp(size(Xi));
 
 % add the Pade white-noise term (skipped)
 

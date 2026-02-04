@@ -117,7 +117,7 @@ for i in range(NitersMax):
     traj_bw[-1] = P1 @ traj_fw[-1]
 
 print('final_fidelity = ', fidelity[-1])
-plt.clf()
+plt.close()
 plt.plot(seq)
 plt.savefig("IMG_control_01.png", dpi=150)
 
